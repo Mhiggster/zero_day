@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 html(lang="en")
-head
-    meta(charset="UTF-8")
-    title Document
-body
-    
+    include ../partials/meta.pug
+    body
+        include ../partials/header.pug
+        block content
+        include ../partials/sidebar.pug
+        include ../partials/footer.pug
+        include ../partials/scripts.pug

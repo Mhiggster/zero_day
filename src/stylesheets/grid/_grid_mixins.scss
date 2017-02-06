@@ -1,0 +1,44 @@
+
+
+// ######################################
+// ============= Mixins ================
+// ######################################
+
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+@mixin make_grid($class) {
+  @for $i from 1 through $column_count {
+
+    // create Column
+    .col-#{$class}-#{$i} {
+      width: percentage($i/12);
+      float: left;
+    }
+
+    // create Offsets
+    .col-#{$class}-offset-#{$i} {
+      margin-left: percentage($i/12);
+    }
+  }
+}
+
+
+@mixin make_column_style {
+  @for $i from 1 through $column_count {
+    .col-lg-#{$i}, .col-md-#{$i}, .col-sm-#{$i}, .col-xs-#{$i} {
+      padding-left: $gutter / 2;
+      padding-right: $gutter / 2;
+    }
+  }
+}

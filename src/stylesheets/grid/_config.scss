@@ -1,0 +1,44 @@
+
+// ######################################
+// ============= Config ================
+// ######################################
+
+
+// _________ Container width
+// 1170 1140
+// 970 940
+// 750 720
+// 480 450 or width: 100%
+// 320 290 or width: 100%
+// _________ Media query
+// 1200px 1140
+// 992px 940
+// 768px 720
+// 480px 450
+// 320px 290
+
+// ================= > Window resize < ================
+$large_window: 1200px;
+$medium_window: 992px;
+$small_window: 768px;
+// statndart
+$extra_window: 480px;
+$tini_window: 320px;
+
+// ================= > Container Width < ================
+
+$container_desktop: 1140px;
+$container_tablet: 940px;
+$container_fablet: 720px;
+// next px or auto width
+$container_mobile: 450px;
+$container_extra: 290px;
+// auto
+$container_auto: auto;
+
+// ================= > Column Gutter < ================
+
+$gutter: 30px; // if 30 you have to delimetor to 2: exp 30/2
+// don't forget the px string
+
+$column_count: 12;

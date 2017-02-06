@@ -1,0 +1,66 @@
+@import '_config';
+@import '_grid_mixins';
+
+
+
+// ######################################
+// ============ Grid Gener =============
+// ######################################
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: $gutter / 2;
+  padding-right: $gutter / 2;
+  
+  // resize media 
+  @media (min-width: $extra_window) {
+    width: $container_mobile; // or auto width
+  }
+
+  @media (min-width: $small_window) {
+    width: $container_fablet;
+  }
+
+  @media (min-width: $medium_window) {
+    width: $container_tablet;
+  }
+
+  @media (min-width: $large_window) {
+    width: $container_desktop;
+  }
+
+
+  @include clearfix;
+}
+
+
+.row {
+  margin-right: $gutter / -2;
+  margin-left: $gutter / -2;
+  @include clearfix;
+}
+
+
+
+
+
+
+@include make_column_style;
+
+@media (min-width: $extra_window) {
+  @include make_grid(xs);
+}
+
+@media (min-width: $small_window) {
+  @include make_grid(sm);
+}
+
+@media (min-width: $medium_window) {
+  @include make_grid(md);
+}
+
+@media (min-width: $large_window) {
+  @include make_grid(lg);
+}
+
