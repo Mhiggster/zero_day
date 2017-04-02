@@ -1,7 +1,7 @@
 /**
  * Просиходит Валидация и Запись Данных в Базу
  * 
- * Оффто
+ * Оффтоп
  * -----------------------------------------
  * localStorage возрощает null при пустом значений
  */
@@ -9,6 +9,8 @@
 
 import elements from "./query.js"
 import guid from "./guid.js"
+
+import validate from "./validator.js"
 
 let methods = {},
     data = {};
@@ -41,16 +43,27 @@ methods.validateAndCollectData = (parnetBlock) => {
 
     // 1 Сбор Данных
     data.id = guid();
-    data.name = parnetBlock.querySelector("#name").value;
-    data.email = parnetBlock.querySelector("#email").value;
-    data.password = parnetBlock.querySelector("#password").value;
+    data.name = parnetBlock.querySelector("#name").value.trim();
+    data.email = parnetBlock.querySelector("#email").value.trim();
+    data.password = parnetBlock.querySelector("#password").value.trim();
     // data.dateTime; В будущем
-    parnetBlock.querySelector("#r-password");
+    data.retypePassword = parnetBlock.querySelector("#r-password");
 
+
+    
 
     // 2 Поиск Старрых Данных Если есть
     getOldData = JSON.parse(localStorage.getItem("users"));
     dataArr = (getOldData) ? getOldData : [];
+    
+
+    // 3 Валидация
+    // Отвалидировать Данные
+    validate.make(data);
+    console.log(validate.getError());
+    return;
+
+    // Прежде что бы что то добовлять в Массив нужно сперва проийти валидацию
     dataArr.push(data);
     userData = JSON.stringify(dataArr);
 
