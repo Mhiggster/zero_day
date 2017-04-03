@@ -1,5 +1,5 @@
 import rules from "./rules.js"
-
+import helpers from "./helpers.js"
 
 let _rules = {
 	pattern: {
@@ -22,22 +22,26 @@ let _rules = {
 };
 
 
+/**
+ * Над этой часть надо подумать.
+ */
 
 export default {
-	_error: {
+	_default_error: {
 		name: null,
 		email: null,
 		password: null,
 		retypePassword: null,
-	}, 
+	},
+	_error: {},
 	make(data) {
 		// тут у нас по сути строки
 		if (data.name.length === _rules.pattern.name) {
-			this.setError("name", _rules.error.name);
+			this._error.name = _rules.error.name;
 		}
 
 		if (data.email.search(_rules.pattern.email) === -1) {
-			this.setError("email", _rules.error.email[0]);
+			this._error.email = _rules.error.email[0];
 		}
 
 		// if (data.email === "Email From DataBase") {
@@ -45,11 +49,11 @@ export default {
 		// }
 
 		if (data.email.length === _rules.pattern.name) {
-			this.setError("email", _rules.error.email[2]);
+			this._error.email = _rules.error.email[2];
 		}
 
 		if (data.password < _rules.pattern.password) {
-			this.setError("password", _rules.error.password[0]);
+			this._error.password = _rules.error.password[0];
 		}
 		
 	},
@@ -58,7 +62,7 @@ export default {
 		this._error[key] = value;
 	},
 	getError() {
-		return this._error;
+		return this._default_error;
 	},
 
 }
