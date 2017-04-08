@@ -65,7 +65,7 @@ elements.header.nav.addEventListener("click", (e) => {
  * @param object
  * 
  */
-funcs.showError = (errors) => {
+funcs.showError = (errors, parentBlock) => {
     let registerBlock,
         errorEl,
         errArr,
@@ -81,29 +81,25 @@ funcs.showError = (errors) => {
     newErrArr = errArr.slice(0, errorEl);
 
 
-
     if (errorEl !== -1) {
         newErrArr[errorEl] = "r-password";
     }
-
-    console.log(errArr);
-    console.log(newErrArr);
-    
-
-
-    registerBlock = elements.section.content.querySelector(".register");
-
 
     /**
      * Сперва Запись в елемент
      * Позже Выявления
      */
     for (let i = 0, len = newErrArr.length; i < len; i++) {
-        outputErr = registerBlock
-            .querySelector("#" + newErrArr[i])
-            .parentElement
-            .querySelector(".text-danger");
-
+        try {
+            outputErr = parentBlock
+                .querySelector("[data-id=" + newErrArr[i] + "]")
+                .parentElement
+                .querySelector(".text-danger");
+        } catch(e) {
+            // Записать в log_file или localStorage.
+            console.error(e);
+            continue;
+        }
         outputErr.innerHTML = errors[errArr[i]];
         outputErr.classList.remove("hide");
     }

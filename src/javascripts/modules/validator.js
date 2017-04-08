@@ -44,64 +44,71 @@ export default {
 		// Обнуляем ошибки
 		this._error = {};
 
-
 		/**
 		 * Валидация для Имени
 		 */
-		if (data.name.length == _rules.pattern.name) {
-			this._error.name = _rules.error.name;
+		if (typeof data.name === "string") {
+			if (data.name.length == _rules.pattern.name) {
+				this._error.name = _rules.error.name;
+			}
 		}
 
 		/**
 		 * Валидация для Email
 		 */
-		if (data.email.search(_rules.pattern.email) === -1) {
-			this._error.email = _rules.error.email[0];
-		}
+		if (typeof data.email === "string") {
+			if (data.email.search(_rules.pattern.email) === -1) {
+				this._error.email = _rules.error.email[0];
+			}
 
-		// if (data.email === "Email From DataBase") {
-		// 	this.setError("email", _rules.error.email[1]);
-		// }
+			// if (data.email === "Email From DataBase") {
+			// 	this.setError("email", _rules.error.email[1]);
+			// }
 
-		if (data.email.length === _rules.pattern.name) {
-			this._error.email = _rules.error.email[2];
+			if (data.email.length === _rules.pattern.name) {
+				this._error.email = _rules.error.email[2];
+			}
 		}
 
 
 		/**
 		 * Валидация для Password
 		 */
-		if (data.password < _rules.pattern.password) {
-			this._error.password = _rules.error.password[0];
-		}
+		if (typeof data.password === "string") {
+			if (data.password < _rules.pattern.password) {
+				this._error.password = _rules.error.password[0];
+			}
 
-		if (data.retypePassword < _rules.pattern.password) {
-			this._error.retypePassword = _rules.error.retypePassword[0];
-		}
+			if (data.retypePassword < _rules.pattern.password) {
+				this._error.retypePassword = _rules.error.retypePassword[0];
+			}
 
-		if (data.retypePassword !== data.password) {
-			this._error.retypePassword = _rules.error.retypePassword[1];
+			if (data.retypePassword !== data.password) {
+				this._error.retypePassword = _rules.error.retypePassword[1];
+			}
 		}
 		
 	},
 	setError() {
 		return helpers.extend({}, this._default_error, this._error);
 	},
-	showError() {
-		view.showError(this.setError());
+	showError(parnetBlock) {
+		view.showError(this.setError(), parnetBlock);
 	},
 	getError() {
 		/**
-		 *
+		 * Последняя Проверка для Регистраций
+		 * Если все ключи равны null. То валидация прошла успешно
 		 */
 		let setHash = this.setError();
-		console.log(this.setError());
+
+		// Скрипт работает не правильно
+		// Сделать Эту часть
 		for(let key in setHash) {
-			if(setHash[key] === null) {
-				this._getError = true;
-			}
+
+			setHash[key] === null
 		}
-;
+		// console.log(this._getError);
 	},
 
 }

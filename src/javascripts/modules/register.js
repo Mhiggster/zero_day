@@ -12,8 +12,8 @@ import helpers from "./helpers.js"
 
 import validate from "./validator.js"
 
-let methods = {},
-    data = {};
+let methods = {};
+    
 
 /**
  * Запись Пользователя в Базу Данных
@@ -39,15 +39,22 @@ methods.createUser = (data) => {
 methods.validateAndCollectData = (parnetBlock) => {
     let getOldData,
         dataArr,
-        userData;
+        userData,
+        data = {};
 
     // 1 Сбор Данных
-    data.id = helpers.guid();
-    data.name = parnetBlock.querySelector("#name").value.trim();
-    data.email = parnetBlock.querySelector("#email").value.trim();
-    data.password = parnetBlock.querySelector("#password").value.trim();
-    // data.dateTime; В будущем
-    data.retypePassword = parnetBlock.querySelector("#r-password").value.trim();
+    if (parnetBlock.className === "register") {
+        data.id = helpers.guid();
+        data.name = parnetBlock.querySelector("[data-id=name]").value.trim();
+        data.email = parnetBlock.querySelector("[data-id=email]").value.trim();
+        data.password = parnetBlock.querySelector("[data-id=password]").value.trim();
+        data.retypePassword = parnetBlock.querySelector("[data-id=r-password]").value.trim();
+    } else {
+        data.email = parnetBlock.querySelector("[data-id=email]").value.trim();
+        data.password = parnetBlock.querySelector("[data-id=password]").value.trim();
+    }
+   
+    
 
 
     
@@ -61,7 +68,7 @@ methods.validateAndCollectData = (parnetBlock) => {
     // Пропускам Валидацию
     validate.make(data);
     // Отображаем ошибки если есть
-    validate.showError();
+    validate.showError(parnetBlock);
     // Прерываем запись если есть ошибки
     if(validate.getError()) return;
     return;
