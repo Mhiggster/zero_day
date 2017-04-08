@@ -23,7 +23,7 @@ let funcs = {},
  * Вспомогательная функция: для elements.header.nav
  * Скрывает и Показывает Активный Блок
  * 
- * @return undefind
+ * @return undefined
  * @param string
  */
 funcs.showBlock = (elName) => {
@@ -41,8 +41,8 @@ funcs.showBlock = (elName) => {
  * Здесь Идет лищь Нахождения Нужного Блока.
  * И его Визуализаций
  * 
- * @return undefind
- * @param event object
+ * @return undefined
+ * @param object
  */
 elements.header.nav.addEventListener("click", (e) => {
     e.preventDefault();
@@ -51,3 +51,61 @@ elements.header.nav.addEventListener("click", (e) => {
     let elName = target.getAttribute("data-block");
     funcs.showBlock(elName);
 });
+
+
+
+/**
+ * ShowE Error
+ * Здесь Идет визуализация ошибок
+ * 
+ * Получаем Ошибки
+ * Ищем нужный блок для Ошибок
+ * Отображаем эти ошибки
+ * 
+ * @param object
+ * 
+ */
+funcs.showError = (errors) => {
+    let registerBlock,
+        errorEl,
+        errArr,
+        outputErr;
+
+
+    // Заменяем имя елемента на имя класса если он есть
+    errArr = Object.keys(errors);
+    errorEl = errArr.indexOf("retypePassword");
+
+    if (errorEl !== -1) {
+        errArr[errorEl] = "r-password";
+    }
+    
+
+
+    registerBlock = elements.section.content.querySelector(".register");
+
+
+    /**
+     * Сперва Запись в елемент
+     * Позже Выявления
+     */
+    for (let i = 0, len = errArr.length; i < len; i++) {
+        outputErr = registerBlock
+            .querySelector("#" + errArr[i])
+            .parentElement
+            .querySelector(".text-danger");
+
+        if (errors[errArr[i]] !== undefined) {
+            outputErr.innerHTML = errors[errArr[i]];
+        }
+        outputErr.classList.remove("hide");
+    }
+    // console.log(registerBlock);
+}
+
+
+
+
+export default {
+    showError: funcs.showError,
+}

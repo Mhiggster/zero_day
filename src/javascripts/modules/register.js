@@ -58,11 +58,13 @@ methods.validateAndCollectData = (parnetBlock) => {
     
 
     // 3 Валидация
-    // Отвалидировать Данные
+    // Пропускам Валидацию
     validate.make(data);
-    console.log(validate.getError());
+    // Отображаем ошибки если есть
+    validate.showError();
+    // Прерываем запись если есть ошибки
+    if(validate.getError()) return;
     return;
-
     // Прежде что бы что то добовлять в Массив нужно сперва проийти валидацию
     dataArr.push(data);
     userData = JSON.stringify(dataArr);

@@ -13,15 +13,19 @@ block content
                     h2.text-info.text-center Register
                     .form-group
                         label(for="name") Name
+                        p.text-danger.hide Error
                         input(type="text" name="name" id="name" class="form-control")
                     .form-group
                         label(for="email") Email
+                        p.text-danger.hide
                         input(type="text" name="email" id="email" class="form-control")
                     .form-group
                         label(for="password") Password
+                        p.text-danger.hide
                         input(type="password" name="password" id="password" class="form-control")
                     .form-group
                         label(for="r-password") Retype-Passowrd
+                        p.text-danger.hide
                         input(type="password" name="r-password" id="r-password" class="form-control")
                     .form-group
                         button Register
@@ -29,9 +33,9 @@ block content
                     h2.text-info.text-center Login
                     .form-group
                         label(for="email") Email
-                        input(type="text" name="email" id="email" class="form-control")
+                        input(type="text" name="email" data-id="email" class="form-control")
                     .form-group
                         label(for="password") Password
-                        input(type="password" name="password" id="password" class="form-control")
+                        input(type="password" name="password" data-id="password" class="form-control")
                     .form-group
                         button Login

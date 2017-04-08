@@ -9,4 +9,4 @@
 1) git clone https://github.com/Mhiggster/zero_project.git my_app
 2) npm install
 3) npm run start 
-4) открываем http://localhost:8000
+4) открываем http://localhost:3000

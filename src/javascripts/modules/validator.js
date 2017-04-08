@@ -1,5 +1,7 @@
 import rules from "./rules.js"
 import helpers from "./helpers.js"
+import view from "./view.js"
+
 
 let _rules = {
 	pattern: {
@@ -34,9 +36,11 @@ export default {
 		retypePassword: null,
 	},
 	_error: {},
+	_getError: false,
 	make(data) {
-		// тут у нас по сути строки
-		if (data.name.length === _rules.pattern.name) {
+		this._error = {};
+
+		if (data.name.length == _rules.pattern.name) {
 			this._error.name = _rules.error.name;
 		}
 
@@ -57,12 +61,27 @@ export default {
 		}
 		
 	},
-	setError(key, value) {
-		// Нужно Обнулить Ошибки
-		this._error[key] = value;
+	setError() {
+		return helpers.extend({}, this._default_error, this._error);
+	},
+	showError() {
+		view.showError(this.setError());
 	},
 	getError() {
-		return this._default_error;
+		/**
+		 *
+		 */
+		let setHash = this.setError();
+
+		console.log(setHash);
+		for(let key in setHash) {
+			console.log(setHash[key]);
+			if(setHash[key] === null) {
+				this._getError = true;
+			}
+		}
+
+		console.log(this._getError);
 	},
 
 }
