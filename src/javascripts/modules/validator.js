@@ -18,6 +18,9 @@ let _rules = {
 		],
 		password: [
 			"Вы не ввели Пароль или 6 символо",
+		],
+		retypePassword: [
+			"Вы не ввели повторно пароль Пароль",
 			"Пароли не совпадают",
 		],
 	}
@@ -38,12 +41,20 @@ export default {
 	_error: {},
 	_getError: false,
 	make(data) {
+		// Обнуляем ошибки
 		this._error = {};
 
+
+		/**
+		 * Валидация для Имени
+		 */
 		if (data.name.length == _rules.pattern.name) {
 			this._error.name = _rules.error.name;
 		}
 
+		/**
+		 * Валидация для Email
+		 */
 		if (data.email.search(_rules.pattern.email) === -1) {
 			this._error.email = _rules.error.email[0];
 		}
@@ -56,8 +67,20 @@ export default {
 			this._error.email = _rules.error.email[2];
 		}
 
+
+		/**
+		 * Валидация для Password
+		 */
 		if (data.password < _rules.pattern.password) {
 			this._error.password = _rules.error.password[0];
+		}
+
+		if (data.retypePassword < _rules.pattern.password) {
+			this._error.retypePassword = _rules.error.retypePassword[0];
+		}
+
+		if (data.retypePassword !== data.password) {
+			this._error.retypePassword = _rules.error.retypePassword[1];
 		}
 		
 	},
@@ -72,16 +95,13 @@ export default {
 		 *
 		 */
 		let setHash = this.setError();
-
-		console.log(setHash);
+		console.log(this.setError());
 		for(let key in setHash) {
-			console.log(setHash[key]);
 			if(setHash[key] === null) {
 				this._getError = true;
 			}
 		}
-
-		console.log(this._getError);
+;
 	},
 
 }

@@ -69,16 +69,25 @@ funcs.showError = (errors) => {
     let registerBlock,
         errorEl,
         errArr,
+        newErrArr,
         outputErr;
-
 
     // Заменяем имя елемента на имя класса если он есть
     errArr = Object.keys(errors);
+
+    // тут луче сделать копию
     errorEl = errArr.indexOf("retypePassword");
 
+    newErrArr = errArr.slice(0, errorEl);
+
+
+
     if (errorEl !== -1) {
-        errArr[errorEl] = "r-password";
+        newErrArr[errorEl] = "r-password";
     }
+
+    console.log(errArr);
+    console.log(newErrArr);
     
 
 
@@ -89,15 +98,13 @@ funcs.showError = (errors) => {
      * Сперва Запись в елемент
      * Позже Выявления
      */
-    for (let i = 0, len = errArr.length; i < len; i++) {
+    for (let i = 0, len = newErrArr.length; i < len; i++) {
         outputErr = registerBlock
-            .querySelector("#" + errArr[i])
+            .querySelector("#" + newErrArr[i])
             .parentElement
             .querySelector(".text-danger");
 
-        if (errors[errArr[i]] !== undefined) {
-            outputErr.innerHTML = errors[errArr[i]];
-        }
+        outputErr.innerHTML = errors[errArr[i]];
         outputErr.classList.remove("hide");
     }
     // console.log(registerBlock);

@@ -8,7 +8,7 @@
 
 
 import elements from "./query.js"
-import guid from "./guid.js"
+import helpers from "./helpers.js"
 
 import validate from "./validator.js"
 
@@ -42,12 +42,12 @@ methods.validateAndCollectData = (parnetBlock) => {
         userData;
 
     // 1 Сбор Данных
-    data.id = guid();
+    data.id = helpers.guid();
     data.name = parnetBlock.querySelector("#name").value.trim();
     data.email = parnetBlock.querySelector("#email").value.trim();
     data.password = parnetBlock.querySelector("#password").value.trim();
     // data.dateTime; В будущем
-    data.retypePassword = parnetBlock.querySelector("#r-password");
+    data.retypePassword = parnetBlock.querySelector("#r-password").value.trim();
 
 
     
