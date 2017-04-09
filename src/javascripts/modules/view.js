@@ -155,6 +155,12 @@ funcs.showProfile = (userData, parentBlock) => {
 }
 
 
+
+/**
+ * Сделаем просто тупо Поисковик
+ * 1) Это вывод всех Пользователей с Базы
+ * 2) И посиковик Пользователей По имени и email
+ */
 funcs.showAllUsers = () => {
     console.log("I'm Gonna Show You SomeThing Beautiful");
 }
