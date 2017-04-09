@@ -5,7 +5,7 @@ block content
         ul.nav.nav-pills
             li: a(href="" data-block="login") Login
             li: a(href="" data-block="register") Register
-            li.hide: a(href="") Logout
+            li.hide: a(href="" data-block="profile") Logout
         hr
         .row
             .col-lg-offset-4.col-lg-4.content
@@ -41,6 +41,18 @@ block content
                         input(type="password" name="password" data-id="password" class="form-control")
                     .form-group
                         button Login
+                div.profile.hide
+                    table.table
+                        thead
+                            tr
+                                th ID
+                                th Name
+                                th Email
+                        tbody
+                            tr
+                                td 3534
+                                td Miras
+                                td Miras
 
 
 

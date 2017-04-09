@@ -97,7 +97,7 @@ funcs.showError = (errors, parentBlock) => {
                 .querySelector(".text-danger");
         } catch(e) {
             // Записать в log_file или localStorage.
-            console.error(e);
+            // console.error(e);
             continue;
         }
         outputErr.innerHTML = errors[errArr[i]];
@@ -106,9 +106,60 @@ funcs.showError = (errors, parentBlock) => {
     // console.log(registerBlock);
 }
 
+/**
+ * Отображает Блок профилья
+ */
+funcs.showProfile = (userData, parentBlock) => {
+    let profileBlock,
+        userList,
+        userDataArr = [];
+
+    profileBlock = parentBlock.nextElementSibling;
+
+    /**
+     * 1) Я должен Скрыть Блок register/logout и меню тоже
+     * 2) В меню открыть logout
+     * 3) В Блоке Информацию о пользователе
+     */
+    Array.prototype.forEach.call(elements.header.nav.querySelectorAll("li"), (el) => {
+        if (el.querySelector("a").getAttribute("data-block") !== "profile") {
+            return el.classList.add("hide");
+        } 
+        el.classList.remove("hide");
+    });
 
 
+
+    parentBlock.classList.add("hide");
+    profileBlock.classList.remove("hide");
+
+
+    // Добовим инофрмацию Пользователя
+    userList = profileBlock
+        .querySelector("tbody")
+        .querySelector("tr")
+        .querySelectorAll("td");
+
+    for(let key in userData) {
+        if (key === "id") {
+            userData[key] = userData[key].slice(0, 5);
+        }
+        userDataArr.push(userData[key]);
+    }
+
+    for(let i = 0, len = userList.length; i < len; i++ ) {
+        userList[i].innerHTML = userDataArr[i];
+    }
+    // Находим блок tbody c tr
+    // И по циклу через AppendChild Пройдемся по все пунктам
+}
+
+
+funcs.showAllUsers = () => {
+    console.log("I'm Gonna Show You SomeThing Beautiful");
+}
 
 export default {
     showError: funcs.showError,
+    showProfile: funcs.showProfile,
 }

@@ -29,6 +29,7 @@ let _rules = {
 
 /**
  * Над этой часть надо подумать.
+ * Слишком Много IF
  */
 
 export default {
@@ -79,6 +80,7 @@ export default {
 				this._error.password = _rules.error.password[0];
 			}
 
+			if (data.retypePassword === undefined) return;
 			if (data.retypePassword < _rules.pattern.password) {
 				this._error.retypePassword = _rules.error.retypePassword[0];
 			}
@@ -96,19 +98,17 @@ export default {
 		view.showError(this.setError(), parnetBlock);
 	},
 	getError() {
+		let setHash;
 		/**
 		 * Последняя Проверка для Регистраций
 		 * Если все ключи равны null. То валидация прошла успешно
 		 */
-		let setHash = this.setError();
 
-		// Скрипт работает не правильно
-		// Сделать Эту часть
+		setHash = this.setError();
 		for(let key in setHash) {
-
-			setHash[key] === null
+			if( setHash[key] !== null ) return false;
 		}
-		// console.log(this._getError);
+		return true;
 	},
 
 }
