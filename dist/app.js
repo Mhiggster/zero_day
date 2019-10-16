@@ -2821,10 +2821,10 @@ new _modules_voc__WEBPACK_IMPORTED_MODULE_0__["default"]().run();
 
 /***/ }),
 
-/***/ "./src/modules/render.js":
-/*!*******************************!*\
-  !*** ./src/modules/render.js ***!
-  \*******************************/
+/***/ "./src/modules/helpers.js":
+/*!********************************!*\
+  !*** ./src/modules/helpers.js ***!
+  \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2842,11 +2842,86 @@ var _default =
 function () {
   function _default() {
     _classCallCheck(this, _default);
+  }
+
+  _createClass(_default, null, [{
+    key: "randomProperty",
+    value: function randomProperty(obj) {
+      var keys = Object.keys(obj);
+      return obj[keys[keys.length * Math.random() << 0]];
+    }
+  }, {
+    key: "mixedOrder",
+    value: function mixedOrder(words) {
+      var currentIndex = words.length,
+          temporaryValue,
+          randomIndex; // While there remain elements to shuffle...
+
+      while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1; // And swap it with the current element.
+
+        temporaryValue = words[currentIndex];
+        words[currentIndex] = words[randomIndex];
+        words[randomIndex] = temporaryValue;
+      }
+
+      return words;
+    }
+  }, {
+    key: "createElement",
+    value: function createElement(name, index, options, action) {
+      if (!(name || options)) return;
+      var el = document.createElement(name);
+
+      if (options) {
+        for (var key in options) {
+          el.setAttribute(key, options[key]);
+        }
+      }
+
+      action(el, index);
+    }
+  }]);
+
+  return _default;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/modules/render.js":
+/*!*******************************!*\
+  !*** ./src/modules/render.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ "./src/modules/helpers.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default() {
+    _classCallCheck(this, _default);
 
     this.dictionary = [];
     this.scenes = 0;
     this.start = 0;
     this.currentScene = null;
+    this.survayBody = document.querySelector('.survay-table_body');
   }
 
   _createClass(_default, [{
@@ -2856,22 +2931,44 @@ function () {
       this.scenes = this.dictionary.length; // rendering
 
       this.currentScene = this.dictionary[this.start];
-      this.display(this.currentScene);
+      this.wordsOutput;
+      this.display();
     }
   }, {
     key: "display",
-    value: function display(currentScene) {
-      this.word(currentScene.word);
-      this.translationsList(currentScene.translations);
+    value: function display() {
+      this.word(this.currentScene.word).translationsList(this.currentScene.translations).drawing();
     }
   }, {
     key: "word",
     value: function word(_word) {
       document.querySelector('.word').innerHTML = _word;
+      return this;
     }
   }, {
     key: "translationsList",
-    value: function translationsList(translations) {}
+    value: function translationsList(translations) {
+      this.wordsOutput = _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].mixedOrder(translations);
+      return this;
+    }
+  }, {
+    key: "drawing",
+    value: function drawing() {
+      var _this = this;
+
+      this.survayBody.innerHTML = '';
+      this.wordsOutput.forEach(function (item) {
+        _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].createElement('tr', item.translation, {
+          'correct': item.correct
+        }, _this.injectTriggersElement.bind(_this));
+      });
+    }
+  }, {
+    key: "injectTriggersElement",
+    value: function injectTriggersElement(el, translation) {
+      el.innerHTML = "<td colspan=\"2\">" + translation + "</td>";
+      this.survayBody.appendChild(el);
+    }
   }]);
 
   return _default;

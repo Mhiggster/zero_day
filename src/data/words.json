@@ -1,23 +1,53 @@
 [
     {
         "word": "book",
-        "translations": {
-            "correct": "Книга",
-            "incorrect": "Голова, анны михайловны уууу иееее"
-        }
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Книга"
+            },
+            {
+                "correct": false,
+                "translation": "Голод Руми"
+            },
+            {
+                "correct": false,
+                "translation": "Чадо, забранировать, заказть"
+            }
+        ]
     },
     {
         "word": "car",
-        "translations": {
-            "correct": "Машина",
-            "incorrect": "Крузак"
-        }
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Машина"
+            },
+            {
+                "correct": false,
+                "translation": "Крокодил"
+            },
+            {
+                "correct": false,
+                "translation": "Сучка"
+            }
+        ]
     },
     {
         "word": "expression",
-        "translations": {
-            "correct": "Выражение",
-            "incorrect": "Анна михайлована"
-        }
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Выражение"
+            },
+            {
+                "correct": false,
+                "translation": "Лицо"
+            },
+            {
+                "correct": false,
+                "translation": "Кетши"
+            }
+        ]
     }
 ]

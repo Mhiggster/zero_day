@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="dist/app.css?id=2b609f415f896043aaf4">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title>My page</title>
+    <title>Vocabulary Trainer</title>
 </head>
 
 <body>
@@ -35,13 +35,7 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2">words, word, words</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">words, word, words</td>
-                                    </tr>
+                                <tbody class="survay-table_body">
                                     <tr>
                                         <td colspan="2">words, word, words</td>
                                     </tr>
