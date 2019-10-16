@@ -1,0 +1,23 @@
+[
+    {
+        "word": "book",
+        "translations": {
+            "correct": "Книга",
+            "incorrect": "Голова, анны михайловны уууу иееее"
+        }
+    },
+    {
+        "word": "car",
+        "translations": {
+            "correct": "Машина",
+            "incorrect": "Крузак"
+        }
+    },
+    {
+        "word": "expression",
+        "translations": {
+            "correct": "Выражение",
+            "incorrect": "Анна михайлована"
+        }
+    }
+]
