@@ -2847,7 +2847,8 @@ function () {
     _classCallCheck(this, _default);
 
     this.survayBody = document.querySelector('.survay-table_body');
-    this.render = new _render__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this.render = new _render__WEBPACK_IMPORTED_MODULE_0__["default"](); // Здесь должен вернуть тот же экземпляр
+
     this.start = 0;
   }
 
@@ -2965,7 +2966,7 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Render; });
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ "./src/modules/helpers.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2975,13 +2976,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var _default =
+var Render =
 /*#__PURE__*/
 function () {
-  function _default() {
-    _classCallCheck(this, _default);
+  // static property
+  function Render() {
+    _classCallCheck(this, Render);
 
-    // singleton
+    if (!!Render.instance) {
+      return Render.instance;
+    } // singleton
+
+
     this.dictionary = [];
     this.scenes = 0;
     this.start = 0;
@@ -2989,7 +2995,7 @@ function () {
     this.survayBody = document.querySelector('.survay-table_body');
   }
 
-  _createClass(_default, [{
+  _createClass(Render, [{
     key: "imutate",
     value: function imutate(dictionary, start) {
       this.dictionary = dictionary;
@@ -3037,7 +3043,7 @@ function () {
     }
   }]);
 
-  return _default;
+  return Render;
 }();
 
 

@@ -3,6 +3,7 @@ import Render from './render'
 import Actions from './actions'
 
 export default class {
+
     constructor () {
         this.render = new Render
         this.actions = new Actions

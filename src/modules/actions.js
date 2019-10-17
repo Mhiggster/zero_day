@@ -3,7 +3,7 @@ import Render from './render'
 export default class {
     constructor () {
         this.survayBody = document.querySelector('.survay-table_body');
-        this.render = new Render
+        this.render = new Render // Здесь должен вернуть тот же экземпляр
         this.start = 0;
     }
 

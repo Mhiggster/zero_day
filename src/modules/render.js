@@ -1,7 +1,12 @@
 import Helpers from './helpers'
 
-export default class {
+export default class Render {
+    // static property
+
     constructor () {
+        if (!!Render.instance) {
+            return Render.instance;
+        }
         // singleton
         this.dictionary = []
         this.scenes = 0
@@ -10,6 +15,7 @@ export default class {
 
         this.survayBody = document.querySelector('.survay-table_body');
     }
+
 
 
     imutate ( dictionary, start ) {
@@ -56,7 +62,4 @@ export default class {
         el.innerHTML = `<td colspan="2">` + translation + `</td>`;
         this.survayBody.appendChild(el);
     }
-
-
-
 }
