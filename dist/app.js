@@ -2821,6 +2821,70 @@ new _modules_voc__WEBPACK_IMPORTED_MODULE_0__["default"]().run();
 
 /***/ }),
 
+/***/ "./src/modules/actions.js":
+/*!********************************!*\
+  !*** ./src/modules/actions.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render */ "./src/modules/render.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var _default =
+/*#__PURE__*/
+function () {
+  function _default() {
+    _classCallCheck(this, _default);
+
+    this.survayBody = document.querySelector('.survay-table_body');
+    this.render = new _render__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this.start = 0;
+  }
+
+  _createClass(_default, [{
+    key: "docking",
+    value: function docking(data) {
+      var _this = this;
+
+      this.survayBody.addEventListener('click', function (e) {
+        var event = e || event,
+            target = event.target;
+        if (target.tagName.toLowerCase() !== 'td') return;
+
+        if (!JSON.parse(target.parentElement.getAttribute('correct'))) {
+          target.parentElement.classList.add('has-background-danger');
+
+          _this.survayBody.querySelector("[correct=\"true\"]").classList.add('has-background-success');
+
+          setTimeout(function () {
+            _this.render.imutate(data, ++_this.start);
+          }, 1100);
+        }
+
+        if (JSON.parse(target.parentElement.getAttribute('correct'))) {
+          target.parentElement.classList.add('has-background-success');
+        }
+      });
+    }
+  }]);
+
+  return _default;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/modules/helpers.js":
 /*!********************************!*\
   !*** ./src/modules/helpers.js ***!
@@ -2917,6 +2981,7 @@ function () {
   function _default() {
     _classCallCheck(this, _default);
 
+    // singleton
     this.dictionary = [];
     this.scenes = 0;
     this.start = 0;
@@ -2926,17 +2991,18 @@ function () {
 
   _createClass(_default, [{
     key: "imutate",
-    value: function imutate(dictionary) {
+    value: function imutate(dictionary, start) {
       this.dictionary = dictionary;
       this.scenes = this.dictionary.length; // rendering
 
-      this.currentScene = this.dictionary[this.start];
+      this.currentScene = this.dictionary[start];
       this.wordsOutput;
       this.display();
     }
   }, {
     key: "display",
     value: function display() {
+      // call another module and run it
       this.word(this.currentScene.word).translationsList(this.currentScene.translations).drawing();
     }
   }, {
@@ -2993,6 +3059,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render */ "./src/modules/render.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions */ "./src/modules/actions.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3008,6 +3075,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var _default =
 /*#__PURE__*/
 function () {
@@ -3015,6 +3083,7 @@ function () {
     _classCallCheck(this, _default);
 
     this.render = new _render__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    this.actions = new _actions__WEBPACK_IMPORTED_MODULE_3__["default"]();
   }
 
   _createClass(_default, [{
@@ -3037,9 +3106,10 @@ function () {
 
               case 2:
                 this.dictionary = _context.sent;
-                this.render.imutate(this.dictionary.data);
+                this.render.imutate(this.dictionary.data, 0);
+                this.actions.docking(this.dictionary.data, this.render.start);
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -3069,8 +3139,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.js */"./src/app.js");
-module.exports = __webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.scss */"./src/app.scss");
+__webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.scss */"./src/app.scss");
 
 
 /***/ })

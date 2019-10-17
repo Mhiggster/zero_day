@@ -2,6 +2,7 @@ import Helpers from './helpers'
 
 export default class {
     constructor () {
+        // singleton
         this.dictionary = []
         this.scenes = 0
         this.start = 0
@@ -11,11 +12,11 @@ export default class {
     }
 
 
-    imutate ( dictionary ) {
+    imutate ( dictionary, start ) {
         this.dictionary = dictionary
         this.scenes = this.dictionary.length
         // rendering
-        this.currentScene = this.dictionary[this.start]
+        this.currentScene = this.dictionary[start]
 
         this.wordsOutput;
         this.display();
@@ -23,6 +24,7 @@ export default class {
 
 
     display () {
+        // call another module and run it
         this.word( this.currentScene.word )
             .translationsList( this.currentScene.translations )
             .drawing();
@@ -54,4 +56,7 @@ export default class {
         el.innerHTML = `<td colspan="2">` + translation + `</td>`;
         this.survayBody.appendChild(el);
     }
+
+
+
 }
