@@ -2845,37 +2845,55 @@ var _default =
 function () {
   function _default() {
     _classCallCheck(this, _default);
-
-    this.survayBody = document.querySelector('.survay-table_body');
-    this.render = new _render__WEBPACK_IMPORTED_MODULE_0__["default"](); // Здесь должен вернуть тот же экземпляр
-
-    this.start = 0;
   }
 
   _createClass(_default, [{
+    key: "renderInstance",
+    value: function renderInstance() {
+      return new _render__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    }
+  }, {
     key: "docking",
-    value: function docking(data) {
+    value: function docking() {
       var _this = this;
 
-      this.survayBody.addEventListener('click', function (e) {
+      this.renderInstance().queryParentBody().addEventListener('click', function (e) {
         var event = e || event,
             target = event.target;
         if (target.tagName.toLowerCase() !== 'td') return;
-
-        if (!JSON.parse(target.parentElement.getAttribute('correct'))) {
-          target.parentElement.classList.add('has-background-danger');
-
-          _this.survayBody.querySelector("[correct=\"true\"]").classList.add('has-background-success');
-
-          setTimeout(function () {
-            _this.render.imutate(data, ++_this.start);
-          }, 1100);
-        }
-
-        if (JSON.parse(target.parentElement.getAttribute('correct'))) {
-          target.parentElement.classList.add('has-background-success');
-        }
+        _this.selectCheck(target) ? _this.successTick(target) : _this.dangerTick(target);
       });
+    }
+  }, {
+    key: "selectCheck",
+    value: function selectCheck(target) {
+      return JSON.parse(target.parentElement.getAttribute('correct'));
+      target.parentElement.classList.add('has-background-success');
+    }
+  }, {
+    key: "dangerTick",
+    value: function dangerTick(target) {
+      target.parentElement.classList.add('has-background-danger'); // if doesn't correct choise select the correct row line
+
+      this.renderInstance().queryParentBody().querySelector("[correct=\"true\"]").classList.add('has-background-success');
+      this.tick();
+    }
+  }, {
+    key: "successTick",
+    value: function successTick(target) {
+      target.parentElement.classList.add('has-background-success');
+      this.tick();
+    }
+  }, {
+    key: "tick",
+    value: function tick() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        ++_this2.renderInstance().start;
+
+        _this2.renderInstance().imutate(_this2.renderInstance().dictionary);
+      }, 1100);
     }
   }]);
 
@@ -2983,52 +3001,61 @@ function () {
   function Render() {
     _classCallCheck(this, Render);
 
-    if (!!Render.instance) {
-      return Render.instance;
-    } // singleton
-
-
+    // singleton
+    if (!!Render.instance) return Render.instance;
     this.dictionary = [];
     this.scenes = 0;
     this.start = 0;
     this.currentScene = null;
-    this.survayBody = document.querySelector('.survay-table_body');
+    this.wordsOutput; // for shuffle words
+
+    Render.instance = this;
   }
 
   _createClass(Render, [{
+    key: "queryParentBody",
+    value: function queryParentBody() {
+      return document.querySelector('.survay-table_body');
+    }
+  }, {
     key: "imutate",
-    value: function imutate(dictionary, start) {
-      this.dictionary = dictionary;
+    value: function imutate(dictionary) {
+      // instance the voc data
+      this.dictionary = dictionary; // scenes lenngth
+
       this.scenes = this.dictionary.length; // rendering
 
-      this.currentScene = this.dictionary[start];
-      this.wordsOutput;
+      this.currentScene = this.dictionary[this.start];
       this.display();
     }
   }, {
     key: "display",
     value: function display() {
-      // call another module and run it
       this.word(this.currentScene.word).translationsList(this.currentScene.translations).drawing();
-    }
+    } // render the main word
+
   }, {
     key: "word",
     value: function word(_word) {
       document.querySelector('.word').innerHTML = _word;
       return this;
-    }
+    } // get shaful words
+
   }, {
     key: "translationsList",
     value: function translationsList(translations) {
       this.wordsOutput = _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].mixedOrder(translations);
       return this;
-    }
+    } // drawing the traslatbale words lists
+
   }, {
     key: "drawing",
     value: function drawing() {
       var _this = this;
 
-      this.survayBody.innerHTML = '';
+      // reset the scene
+      this.queryParentBody().innerHTML = ''; // rendering the words
+
       this.wordsOutput.forEach(function (item) {
         _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].createElement('tr', item.translation, {
           'correct': item.correct
@@ -3039,7 +3066,7 @@ function () {
     key: "injectTriggersElement",
     value: function injectTriggersElement(el, translation) {
       el.innerHTML = "<td colspan=\"2\">" + translation + "</td>";
-      this.survayBody.appendChild(el);
+      this.queryParentBody().appendChild(el);
     }
   }]);
 
@@ -3112,8 +3139,9 @@ function () {
 
               case 2:
                 this.dictionary = _context.sent;
-                this.render.imutate(this.dictionary.data, 0);
-                this.actions.docking(this.dictionary.data, this.render.start);
+                // render the HTML to render the html data i passed the data from file
+                this.render.imutate(this.dictionary.data);
+                this.actions.docking();
 
               case 5:
               case "end":
@@ -3145,8 +3173,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.js */"./src/app.js");
-module.exports = __webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.scss */"./src/app.scss");
+__webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.scss */"./src/app.scss");
 
 
 /***/ })

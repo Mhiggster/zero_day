@@ -4,53 +4,61 @@ export default class Render {
     // static property
 
     constructor () {
-        if (!!Render.instance) {
-            return Render.instance;
-        }
         // singleton
-        this.dictionary = []
+        if (!!Render.instance) return Render.instance;
+
+        this.dictionary = [];
         this.scenes = 0
         this.start = 0
         this.currentScene = null
+        this.wordsOutput; // for shuffle words
 
-        this.survayBody = document.querySelector('.survay-table_body');
+        Render.instance = this;
     }
 
+    queryParentBody () {
+        return document.querySelector('.survay-table_body');
+    }
 
-
-    imutate ( dictionary, start ) {
+    imutate ( dictionary ) {
+        // instance the voc data
         this.dictionary = dictionary
+        // scenes lenngth
         this.scenes = this.dictionary.length
         // rendering
-        this.currentScene = this.dictionary[start]
+        this.currentScene = this.dictionary[this.start]
 
-        this.wordsOutput;
         this.display();
     }
 
 
     display () {
-        // call another module and run it
-        this.word( this.currentScene.word )
-            .translationsList( this.currentScene.translations )
-            .drawing();
+        this
+          .word( this.currentScene.word )
+          .translationsList( this.currentScene.translations )
+          .drawing();
     }
 
+    // render the main word
     word ( word ) {
         document.querySelector('.word').innerHTML = word
 
         return this;
     }
 
+    // get shaful words
     translationsList( translations ) {
         this.wordsOutput = Helpers.mixedOrder(translations)
 
         return this
     }
 
+    // drawing the traslatbale words lists
     drawing () {
-        this.survayBody.innerHTML = '';
+        // reset the scene
+        this.queryParentBody().innerHTML = '';
         
+        // rendering the words
         this.wordsOutput.forEach(item => {
             Helpers.createElement('tr', item.translation, {
                 'correct': item.correct,
@@ -60,6 +68,6 @@ export default class Render {
 
     injectTriggersElement( el, translation ) {
         el.innerHTML = `<td colspan="2">` + translation + `</td>`;
-        this.survayBody.appendChild(el);
+        this.queryParentBody().appendChild(el);
     }
 }

@@ -14,11 +14,12 @@ export default class {
     } 
 
     async run () {
+        // boot a dictionary
         this.dictionary = await this.bootDictionary();
 
-        this.render.imutate(this.dictionary.data, 0)
+        // render the HTML to render the html data i passed the data from file
+        this.render.imutate(this.dictionary.data)
 
-        this.actions.docking(this.dictionary.data, this.render.start)
-
+        this.actions.docking()
     }
 }

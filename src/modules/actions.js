@@ -1,30 +1,49 @@
 import Render from './render'
 
 export default class {
-    constructor () {
-        this.survayBody = document.querySelector('.survay-table_body');
-        this.render = new Render // Здесь должен вернуть тот же экземпляр
-        this.start = 0;
+    renderInstance () {
+        return new Render;
     }
 
-    docking (data) {
-        this.survayBody.addEventListener('click', e => {
+    docking () {
+        this.renderInstance().queryParentBody().addEventListener('click', e => {
             let event = e || event, target = event.target;
             if ( target.tagName.toLowerCase() !== 'td' ) return
-            
-            if ( !JSON.parse(target.parentElement.getAttribute('correct')) ) {
-                target.parentElement.classList.add('has-background-danger')
 
-                this.survayBody.querySelector(`[correct="true"]`).classList.add('has-background-success')
-                setTimeout(() => {
-                    this.render.imutate(data, ++this.start)
-                }, 1100);
-            }
-
-            if ( JSON.parse(target.parentElement.getAttribute('correct')) ) {
-                target.parentElement.classList.add('has-background-success')
-            }
-
+            this.selectCheck(target)
+                ? this.successTick(target)
+                : this.dangerTick(target);
         })
+    }
+
+    selectCheck ( target ) {
+        return JSON.parse(target.parentElement.getAttribute('correct'))
+        target.parentElement.classList.add('has-background-success')
+    }
+
+
+    dangerTick ( target ) {
+        target.parentElement.classList.add('has-background-danger')
+
+        // if doesn't correct choise select the correct row line
+        this
+            .renderInstance()
+            .queryParentBody()
+            .querySelector(`[correct="true"]`)
+            .classList.add('has-background-success')
+
+        this.tick();
+    }
+
+    successTick ( target ) {
+        target.parentElement.classList.add('has-background-success')
+        this.tick()
+    }
+
+    tick () {
+        setTimeout(() => {
+            ++this.renderInstance().start;
+            this.renderInstance().imutate(this.renderInstance().dictionary)
+        }, 1100);
     }
 }
