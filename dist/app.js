@@ -3152,11 +3152,12 @@ function () {
     key: "run",
     value: function run() {
       this.greeting();
-      this.init();
     }
   }, {
     key: "greeting",
-    value: function greeting() {}
+    value: function greeting() {
+      this.init();
+    }
   }, {
     key: "init",
     value: function () {

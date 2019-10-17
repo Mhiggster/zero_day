@@ -15,11 +15,10 @@ export default class {
 
     run () {
         this.greeting();
-        this.init();
     }
 
     greeting () {
-        
+        this.init();
     }
 
     async  init () {
