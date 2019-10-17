@@ -1,52 +1,477 @@
 [
     {
-        "word": "book",
+        "word": "generous",
         "translations": [
             {
                 "correct": true,
-                "translation": "Книга"
+                "translation": "Великодушный"
             },
             {
                 "correct": false,
-                "translation": "Голод Руми"
+                "translation": "Злой"
             },
             {
                 "correct": false,
-                "translation": "Чадо, забранировать, заказть"
+                "translation": "Беспощадный"
             }
         ]
     },
     {
-        "word": "car",
+        "word": "rude",
         "translations": [
             {
                 "correct": true,
-                "translation": "Машина"
+                "translation": "Грубый"
             },
             {
                 "correct": false,
-                "translation": "Крокодил"
+                "translation": "Пошлый"
             },
             {
                 "correct": false,
-                "translation": "Сучка"
+                "translation": "Сволачь"
             }
         ]
     },
     {
-        "word": "expression",
+        "word": "patient",
         "translations": [
             {
                 "correct": true,
-                "translation": "Выражение"
+                "translation": "Терпеливый"
             },
             {
                 "correct": false,
-                "translation": "Лицо"
+                "translation": "Страный"
             },
             {
                 "correct": false,
-                "translation": "Кетши"
+                "translation": "Гриб"
+            }
+        ]
+    },
+    {
+        "word": "impatient",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Нетерпеливый"
+            },
+            {
+                "correct": false,
+                "translation": "Ждун"
+            },
+            {
+                "correct": false,
+                "translation": "Микроб"
+            }
+        ]
+    },
+    {
+        "word": "nasty",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Мерзкий"
+            },
+            {
+                "correct": false,
+                "translation": "Страсный"
+            },
+            {
+                "correct": false,
+                "translation": "Рыбак"
+            }
+        ]
+    },
+    {
+        "word": "talkative",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Разговорчивый"
+            },
+            {
+                "correct": false,
+                "translation": "Молчун"
+            },
+            {
+                "correct": false,
+                "translation": "Скромный"
+            }
+        ]
+    },
+    {
+        "word": "confident",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Увереный"
+            },
+            {
+                "correct": false,
+                "translation": "Стеснительный"
+            },
+            {
+                "correct": false,
+                "translation": "Трио"
+            }
+        ]
+    },
+    {
+        "word": "arrogant",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Высокомерный"
+            },
+            {
+                "correct": false,
+                "translation": "Таинственый"
+            },
+            {
+                "correct": false,
+                "translation": "Мамбет"
+            }
+        ]
+    },
+    {
+        "word": "selfish",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Эгоист"
+            },
+            {
+                "correct": false,
+                "translation": "Душка"
+            },
+            {
+                "correct": false,
+                "translation": "Сэлфи"
+            }
+        ]
+    },
+    {
+        "word": "expect",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Ожидать"
+            },
+            {
+                "correct": false,
+                "translation": "Кроме"
+            },
+            {
+                "correct": false,
+                "translation": "Вневоле"
+            }
+        ]
+    },
+    {
+        "word": "except",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Кроме"
+            },
+            {
+                "correct": false,
+                "translation": "Ожидать"
+            },
+            {
+                "correct": false,
+                "translation": "Ой, все"
+            }
+        ]
+    },
+    {
+        "word": "refuse",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Отказаться"
+            },
+            {
+                "correct": false,
+                "translation": "Передать"
+            },
+            {
+                "correct": false,
+                "translation": "Запретить"
+            }
+        ]
+    },
+    {
+        "word": "avoid",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Избегать"
+            },
+            {
+                "correct": false,
+                "translation": "Прибыть"
+            },
+            {
+                "correct": false,
+                "translation": "Бросить"
+            }
+        ]
+    },
+    {
+        "word": "suggest",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Предлогать как OFFER"
+            },
+            {
+                "correct": false,
+                "translation": "Жить"
+            },
+            {
+                "correct": false,
+                "translation": "Умереть"
+            }
+        ]
+    },
+    {
+        "word": "rebellious",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Непослушный, Бунтарь"
+            },
+            {
+                "correct": false,
+                "translation": "Быстрый"
+            },
+            {
+                "correct": false,
+                "translation": "Тяжелый"
+            }
+        ]
+    },
+    {
+        "word": "outgoing",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Исходящий (звонок), Общительный как tackative"
+            },
+            {
+                "correct": false,
+                "translation": "Тихий"
+            },
+            {
+                "correct": false,
+                "translation": "Крепкий"
+            }
+        ]
+    },
+    {
+        "word": "gentle",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Нежный"
+            },
+            {
+                "correct": false,
+                "translation": "Грубый"
+            },
+            {
+                "correct": false,
+                "translation": "Тусовщик"
+            }
+        ]
+    },
+    {
+        "word": "easy-going",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Простой чувак"
+            },
+            {
+                "correct": false,
+                "translation": "Сложный чувак"
+            },
+            {
+                "correct": false,
+                "translation": "Легко"
+            }
+        ]
+    },
+    {
+        "word": "passionate",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Страсный"
+            },
+            {
+                "correct": false,
+                "translation": "Вежливый"
+            },
+            {
+                "correct": false,
+                "translation": "Грубый"
+            }
+        ]
+    },
+    {
+        "word": "performer",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Исполнитель"
+            },
+            {
+                "correct": false,
+                "translation": "Предатель"
+            },
+            {
+                "correct": false,
+                "translation": "Частота"
+            }
+        ]
+    },
+    {
+        "word": "I like, i passionate about, I interested in, i am into",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Увлечен, заинтересован"
+            },
+            {
+                "correct": false,
+                "translation": "Скучно"
+            },
+            {
+                "correct": false,
+                "translation": "Ненавидеть"
+            }
+        ]
+    },
+    {
+        "word": "I'm loathe, i cant stand, not my thing",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Ненавижу, терпеть не могу, ну это это не мое"
+            },
+            {
+                "correct": false,
+                "translation": "Обожаю"
+            },
+            {
+                "correct": false,
+                "translation": "Странно но быстро"
+            }
+        ]
+    },
+    {
+        "word": "got out, get off",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Вылазить, вставать, выходить"
+            },
+            {
+                "correct": false,
+                "translation": "Заходить"
+            },
+            {
+                "correct": false,
+                "translation": "Приходить"
+            }
+        ]
+    },
+    {
+        "word": "pouring out",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Наливать"
+            },
+            {
+                "correct": false,
+                "translation": "Выпивать"
+            },
+            {
+                "correct": false,
+                "translation": "Забрать"
+            }
+        ]
+    },
+    {
+        "word": "anxiously",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "С тревогой"
+            },
+            {
+                "correct": false,
+                "translation": "Спокойный"
+            },
+            {
+                "correct": false,
+                "translation": "Кретин"
+            }
+        ]
+    },
+    {
+        "word": "cheerfully",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Весело как FUNNY"
+            },
+            {
+                "correct": false,
+                "translation": "Скучно"
+            },
+            {
+                "correct": false,
+                "translation": "Земля"
+            }
+        ]
+    },
+    {
+        "word": "enterance / enterend",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Вход, Вошел"
+            },
+            {
+                "correct": false,
+                "translation": "Вышел"
+            },
+            {
+                "correct": false,
+                "translation": "Выход"
+            }
+        ]
+    },
+    {
+        "word": "aged, middle-aged",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Пристарелый"
+            },
+            {
+                "correct": false,
+                "translation": "Паладин"
+            },
+            {
+                "correct": false,
+                "translation": "Зверь"
             }
         ]
     }
