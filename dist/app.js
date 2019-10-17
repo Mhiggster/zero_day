@@ -2894,7 +2894,7 @@ function () {
   }, {
     key: "tick",
     value: function tick() {
-      setTimeout(this.tickRunner.bind(this), 600);
+      setTimeout(this.tickRunner.bind(this), 1000);
     }
   }, {
     key: "tickRunner",

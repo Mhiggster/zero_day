@@ -49,7 +49,7 @@ export default class {
     }
 
     tick () {
-        setTimeout(this.tickRunner.bind(this), 600);
+        setTimeout(this.tickRunner.bind(this), 1000);
     }
 
     tickRunner () {

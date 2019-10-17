@@ -1,6 +1,9 @@
 ## Vocabulary Trainer
 
 Простой тренажер слов на чисто javascript + bulma
+<hr>
+<img src="dist/voc.gif" />
+<hr>
 Сборка проекта происходит с использованием [laravel-mix](https://laravel-mix.com/)
 
 ## Установка
