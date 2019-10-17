@@ -1,9 +1,11 @@
 import axios from 'axios'
 import Render from './render'
+import Actions from './actions'
 
 export default class {
     constructor () {
         this.render = new Render
+        this.actions = new Actions
     }
 
     bootDictionary () {
@@ -13,6 +15,9 @@ export default class {
     async run () {
         this.dictionary = await this.bootDictionary();
 
-        this.render.imutate(this.dictionary.data)
+        this.render.imutate(this.dictionary.data, 0)
+
+        this.actions.docking(this.dictionary.data, this.render.start)
+
     }
 }
