@@ -13,6 +13,9 @@ export default class Render {
         this.currentScene = null
         this.wordsOutput; // for shuffle words
 
+        this.correct = 0
+        this.incorrect = 0
+
         Render.instance = this;
     }
 
@@ -46,6 +49,11 @@ export default class Render {
         return this;
     }
 
+
+    score () {
+        document.querySelector('.score').innerHTML = `<span class="has-text-success">${this.correct}</span>/<span class="has-text-danger">${this.incorrect}</span>`;
+    }
+
     // get shaful words
     translationsList( translations ) {
         this.wordsOutput = Helpers.mixedOrder(translations)
@@ -67,7 +75,17 @@ export default class Render {
     }
 
     injectTriggersElement( el, translation ) {
-        el.innerHTML = `<td colspan="2">` + translation + `</td>`;
+        el.innerHTML = `<td colspan="2">${translation}</td>`;
         this.queryParentBody().appendChild(el);
     }
+
+
+    trainingEnd () {
+        this.queryParentBody().innerHTML = `
+            <tr><td colspan="2"><h3>Тренировка окончена</h3></td></tr>
+            <tr><td colspan="2"><h5>Правильных: ${this.correct}</h5></td></tr>
+            <tr><td colspan="2"><h5>Неправильных: ${this.incorrect}</h5></td></tr>
+            `;
+1    }
+
 }

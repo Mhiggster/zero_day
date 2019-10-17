@@ -1,6 +1,6 @@
-## StackSlider
+## Vocabulary Trainer
 
-Тренажер англиских слов.
+Простой тренажер слов на чисто javascript + bulma
 Сборка проекта происходит с использованием [laravel-mix](https://laravel-mix.com/)
 
 ## Установка

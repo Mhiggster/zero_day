@@ -2845,6 +2845,8 @@ var _default =
 function () {
   function _default() {
     _classCallCheck(this, _default);
+
+    this.survayBody = this.renderInstance().queryParentBody();
   }
 
   _createClass(_default, [{
@@ -2855,14 +2857,15 @@ function () {
   }, {
     key: "docking",
     value: function docking() {
-      var _this = this;
-
-      this.renderInstance().queryParentBody().addEventListener('click', function (e) {
-        var event = e || event,
-            target = event.target;
-        if (target.tagName.toLowerCase() !== 'td') return;
-        _this.selectCheck(target) ? _this.successTick(target) : _this.dangerTick(target);
-      });
+      this.survayBody.addEventListener('click', this.selectEvent.bind(this));
+    }
+  }, {
+    key: "selectEvent",
+    value: function selectEvent(e) {
+      var event = e || event,
+          target = event.target;
+      if (target.tagName.toLowerCase() !== 'td') return;
+      this.selectCheck(target) ? this.successTick(target) : this.dangerTick(target);
     }
   }, {
     key: "selectCheck",
@@ -2875,25 +2878,33 @@ function () {
     value: function dangerTick(target) {
       target.parentElement.classList.add('has-background-danger'); // if doesn't correct choise select the correct row line
 
-      this.renderInstance().queryParentBody().querySelector("[correct=\"true\"]").classList.add('has-background-success');
+      this.survayBody.querySelector("[correct=\"true\"]").classList.add('has-background-success');
       this.tick();
+      this.renderInstance().incorrect++;
+      this.renderInstance().score();
     }
   }, {
     key: "successTick",
     value: function successTick(target) {
       target.parentElement.classList.add('has-background-success');
       this.tick();
+      this.renderInstance().correct++;
+      this.renderInstance().score();
     }
   }, {
     key: "tick",
     value: function tick() {
-      var _this2 = this;
+      setTimeout(this.tickRunner.bind(this), 1100);
+    }
+  }, {
+    key: "tickRunner",
+    value: function tickRunner() {
+      if (this.renderInstance().start === this.renderInstance().dictionary.length - 1) {
+        return this.renderInstance().trainingEnd();
+      }
 
-      setTimeout(function () {
-        ++_this2.renderInstance().start;
-
-        _this2.renderInstance().imutate(_this2.renderInstance().dictionary);
-      }, 1100);
+      ++this.renderInstance().start;
+      this.renderInstance().imutate(this.renderInstance().dictionary);
     }
   }]);
 
@@ -3009,6 +3020,8 @@ function () {
     this.currentScene = null;
     this.wordsOutput; // for shuffle words
 
+    this.correct = 0;
+    this.incorrect = 0;
     Render.instance = this;
   }
 
@@ -3039,6 +3052,11 @@ function () {
     value: function word(_word) {
       document.querySelector('.word').innerHTML = _word;
       return this;
+    }
+  }, {
+    key: "score",
+    value: function score() {
+      document.querySelector('.score').innerHTML = "<span class=\"has-text-success\">".concat(this.correct, "</span>/<span class=\"has-text-danger\">").concat(this.incorrect, "</span>");
     } // get shaful words
 
   }, {
@@ -3065,8 +3083,14 @@ function () {
   }, {
     key: "injectTriggersElement",
     value: function injectTriggersElement(el, translation) {
-      el.innerHTML = "<td colspan=\"2\">" + translation + "</td>";
+      el.innerHTML = "<td colspan=\"2\">".concat(translation, "</td>");
       this.queryParentBody().appendChild(el);
+    }
+  }, {
+    key: "trainingEnd",
+    value: function trainingEnd() {
+      this.queryParentBody().innerHTML = "\n            <tr><td colspan=\"2\"><h3>\u0422\u0440\u0435\u043D\u0438\u0440\u043E\u0432\u043A\u0430 \u043E\u043A\u043E\u043D\u0447\u0435\u043D\u0430</h3></td></tr>\n            <tr><td colspan=\"2\"><h5>\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445: ".concat(this.correct, "</h5></td></tr>\n            <tr><td colspan=\"2\"><h5>\u041D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445: ").concat(this.incorrect, "</h5></td></tr>\n            ");
+      1;
     }
   }]);
 
@@ -3126,8 +3150,17 @@ function () {
     }
   }, {
     key: "run",
+    value: function run() {
+      this.greeting();
+      this.init();
+    }
+  }, {
+    key: "greeting",
+    value: function greeting() {}
+  }, {
+    key: "init",
     value: function () {
-      var _run = _asyncToGenerator(
+      var _init = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -3151,11 +3184,11 @@ function () {
         }, _callee, this);
       }));
 
-      function run() {
-        return _run.apply(this, arguments);
+      function init() {
+        return _init.apply(this, arguments);
       }
 
-      return run;
+      return init;
     }()
   }]);
 

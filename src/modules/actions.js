@@ -1,19 +1,25 @@
 import Render from './render'
 
 export default class {
+    constructor () {
+        this.survayBody = this.renderInstance().queryParentBody();
+    }
+
     renderInstance () {
         return new Render;
     }
 
     docking () {
-        this.renderInstance().queryParentBody().addEventListener('click', e => {
-            let event = e || event, target = event.target;
-            if ( target.tagName.toLowerCase() !== 'td' ) return
+        this.survayBody.addEventListener('click', this.selectEvent.bind(this))
+    }
 
-            this.selectCheck(target)
-                ? this.successTick(target)
-                : this.dangerTick(target);
-        })
+    selectEvent (e) {
+        let event = e || event, target = event.target;
+        if (target.tagName.toLowerCase() !== 'td') return
+
+        this.selectCheck(target)
+            ? this.successTick(target)
+            : this.dangerTick(target);
     }
 
     selectCheck ( target ) {
@@ -26,24 +32,31 @@ export default class {
         target.parentElement.classList.add('has-background-danger')
 
         // if doesn't correct choise select the correct row line
-        this
-            .renderInstance()
-            .queryParentBody()
-            .querySelector(`[correct="true"]`)
+        this.survayBody.querySelector(`[correct="true"]`)
             .classList.add('has-background-success')
 
         this.tick();
+
+        this.renderInstance().incorrect++;
+        this.renderInstance().score();
     }
 
     successTick ( target ) {
         target.parentElement.classList.add('has-background-success')
         this.tick()
+        this.renderInstance().correct++;
+        this.renderInstance().score();
     }
 
     tick () {
-        setTimeout(() => {
-            ++this.renderInstance().start;
-            this.renderInstance().imutate(this.renderInstance().dictionary)
-        }, 1100);
+        setTimeout(this.tickRunner.bind(this), 1100);
+    }
+
+    tickRunner () {
+        if (this.renderInstance().start === this.renderInstance().dictionary.length - 1) {
+            return this.renderInstance().trainingEnd();
+        }
+        ++this.renderInstance().start;
+        this.renderInstance().imutate(this.renderInstance().dictionary)
     }
 }

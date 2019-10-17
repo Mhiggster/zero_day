@@ -13,7 +13,16 @@ export default class {
         return  axios.get(location.href + '/src/data/words.json');
     } 
 
-    async run () {
+    run () {
+        this.greeting();
+        this.init();
+    }
+
+    greeting () {
+        
+    }
+
+    async  init () {
         // boot a dictionary
         this.dictionary = await this.bootDictionary();
 
