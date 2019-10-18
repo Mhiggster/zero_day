@@ -1035,5 +1035,22 @@
                 "translation": "Враги"
             }
         ]
+    },
+    {
+        "word": "determined",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Решительный"
+            },
+            {
+                "correct": false,
+                "translation": "Стеснительный"
+            },
+            {
+                "correct": false,
+                "translation": "Вялый"
+            }
+        ]
     }
 ]

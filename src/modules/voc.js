@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Render from './render'
 import Actions from './actions'
+import Helpers from './helpers'
 
 export default class {
 
@@ -9,27 +10,31 @@ export default class {
         this.actions = new Actions
     }
 
-    bootDictionary () {
+    fetchDictionary () {
         return  axios.get(location.href + '/src/data/words.json');
     } 
 
     run () {
-        this.greeting();
+        this.chosenSurvey()
+        // this.init();
     }
 
-    greeting () {
-        this.render.greeting()
-
-
-        this.init();
-    }
-
-    async  init () {
+    async chosenSurvey () {
         // boot a dictionary
-        this.dictionary = await this.bootDictionary();
+        this.dictionary = await this.fetchDictionary();
 
+        this.render.greeting(this.dictionary.data);
+        this.render.paginationRender();
+
+        this.actions.chosenEventListener();
+    }
+
+
+    init () {
+        
+        
         // render the HTML to render the html data i passed the data from file
-        this.render.imutate(this.dictionary.data)
+        this.render.imutate()
 
         this.actions.docking()
     }

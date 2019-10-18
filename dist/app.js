@@ -2848,6 +2848,12 @@ function () {
 
     this.survayBody = this.renderInstance().queryParentBody();
   }
+  /**
+   *
+   *
+   * @returns
+   */
+
 
   _createClass(_default, [{
     key: "renderInstance",
@@ -2855,10 +2861,30 @@ function () {
       return new _render__WEBPACK_IMPORTED_MODULE_0__["default"]();
     }
   }, {
+    key: "chosenEventListener",
+    value: function chosenEventListener() {
+      document.querySelector('.pagination-list').addEventListener('click', function (e) {
+        var event = e || event,
+            target = event.target;
+        if (target.tagName.toLowerCase() !== 'a') return;
+      });
+    }
+    /**
+     *
+     *
+     */
+
+  }, {
     key: "docking",
     value: function docking() {
       this.survayBody.addEventListener('click', this.selectEvent.bind(this));
     }
+    /**
+     *
+     *
+     * @param {*} e
+     */
+
   }, {
     key: "selectEvent",
     value: function selectEvent(e) {
@@ -2867,12 +2893,25 @@ function () {
       if (target.tagName.toLowerCase() !== 'td') return;
       this.selectCheck(target) ? this.successTick(target) : this.dangerTick(target);
     }
+    /**
+     *
+     *
+     * @param {*} target
+     * @returns
+     */
+
   }, {
     key: "selectCheck",
     value: function selectCheck(target) {
       return JSON.parse(target.parentElement.getAttribute('correct'));
       target.parentElement.classList.add('has-background-success');
     }
+    /**
+     *
+     *
+     * @param {*} target
+     */
+
   }, {
     key: "dangerTick",
     value: function dangerTick(target) {
@@ -2883,6 +2922,12 @@ function () {
       this.renderInstance().incorrect++;
       this.renderInstance().score();
     }
+    /**
+     *
+     *
+     * @param {*} target
+     */
+
   }, {
     key: "successTick",
     value: function successTick(target) {
@@ -2891,11 +2936,22 @@ function () {
       this.renderInstance().correct++;
       this.renderInstance().score();
     }
+    /**
+     *
+     *
+     */
+
   }, {
     key: "tick",
     value: function tick() {
       setTimeout(this.tickRunner.bind(this), 1000);
     }
+    /**
+     *
+     *
+     * @returns
+     */
+
   }, {
     key: "tickRunner",
     value: function tickRunner() {
@@ -2977,6 +3033,17 @@ function () {
 
       action(el, index);
     }
+  }, {
+    key: "chunk",
+    value: function chunk(array, _chunk) {
+      var R = [];
+
+      for (var i = 0; i < array.length; i += _chunk) {
+        R.push(array.slice(i, i + _chunk));
+      }
+
+      return R;
+    }
   }]);
 
   return _default;
@@ -3008,7 +3075,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Render =
 /*#__PURE__*/
 function () {
-  // static property
+  /**
+   * Creates an instance of Render.
+   * @memberof Render
+   */
   function Render() {
     _classCallCheck(this, Render);
 
@@ -3022,30 +3092,92 @@ function () {
 
     this.correct = 0;
     this.incorrect = 0;
+    this.chunk = 20;
+    this.rangeSplit = '';
+    this.rangePagination = [];
     Render.instance = this;
   }
+  /**
+   *
+   *
+   * @returns
+   * @memberof Render
+   */
+
 
   _createClass(Render, [{
     key: "queryParentBody",
     value: function queryParentBody() {
       return document.querySelector('.survay-table_body');
     }
+    /**
+     * rendering the greeting section
+     *
+     * @param {*} dictionary
+     * @memberof Render
+     */
+
+  }, {
+    key: "greeting",
+    value: function greeting(dictionary) {
+      var _this = this;
+
+      this.dictionary = dictionary; // TO DO: add check if item lenght will be one
+
+      _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].chunk(this.dictionary, this.chunk).map(function (item, index) {
+        _this.rangeSplit = "".concat(item.length * index + 1, " - ").concat((index + 1) * item.length);
+
+        if (item.length !== _this.chunk) {
+          _this.rangeSplit = "".concat(_this.dictionary.length - (item.length - 1), " - ").concat(_this.dictionary.length);
+        }
+
+        _this.rangePagination.push(_this.rangeSplit);
+      });
+    }
+  }, {
+    key: "paginationRender",
+    value: function paginationRender() {
+      document.querySelector('.pagination-list').innerHTML = '';
+      this.rangePagination.forEach(function (item) {
+        _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].createElement('li', item, {}, function (el, value) {
+          el.innerHTML = "<a class=\"pagination-link\">".concat(item, "</a>");
+          document.querySelector('.pagination-list').appendChild(el);
+        });
+      });
+    }
+    /**
+     *
+     *
+     * @memberof Render
+     */
+
   }, {
     key: "imutate",
-    value: function imutate(dictionary) {
-      // instance the voc data
-      this.dictionary = dictionary; // scenes lenngth
-
+    value: function imutate() {
+      // scenes lenngth
       this.scenes = this.dictionary.length; // rendering
 
       this.currentScene = this.dictionary[this.start];
       this.display();
     }
+    /**
+     *
+     *
+     * @memberof Render
+     */
+
   }, {
     key: "display",
     value: function display() {
       this.word(this.currentScene.word).translationsList(this.currentScene.translations).drawing();
-    } // render the main word
+    }
+    /**
+     * Render the main word
+     *
+     * @param {*} word
+     * @returns
+     * @memberof Render
+     */
 
   }, {
     key: "word",
@@ -3053,23 +3185,41 @@ function () {
       document.querySelector('.word').innerHTML = _word;
       return this;
     }
+    /**
+     *
+     *
+     * @memberof Render
+     */
+
   }, {
     key: "score",
     value: function score() {
       document.querySelector('.score').innerHTML = "<span class=\"has-text-success\">".concat(this.correct, "</span>/<span class=\"has-text-danger\">").concat(this.incorrect, "</span>");
-    } // get shaful words
+    }
+    /**
+     * get shaful words
+     *
+     * @param {*} translations
+     * @returns
+     * @memberof Render
+     */
 
   }, {
     key: "translationsList",
     value: function translationsList(translations) {
       this.wordsOutput = _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].mixedOrder(translations);
       return this;
-    } // drawing the traslatbale words lists
+    }
+    /**
+     * drawing the traslatbale words lists
+     *
+     * @memberof Render
+     */
 
   }, {
     key: "drawing",
     value: function drawing() {
-      var _this = this;
+      var _this2 = this;
 
       // reset the scene
       this.queryParentBody().innerHTML = ''; // rendering the words
@@ -3077,23 +3227,34 @@ function () {
       this.wordsOutput.forEach(function (item) {
         _helpers__WEBPACK_IMPORTED_MODULE_0__["default"].createElement('tr', item.translation, {
           'correct': item.correct
-        }, _this.injectTriggersElement.bind(_this));
+        }, _this2.injectTriggersElement.bind(_this2));
       });
     }
+    /**
+     *
+     *
+     * @param {*} el
+     * @param {*} translation
+     * @memberof Render
+     */
+
   }, {
     key: "injectTriggersElement",
     value: function injectTriggersElement(el, translation) {
       el.innerHTML = "<td colspan=\"2\">".concat(translation, "</td>");
       this.queryParentBody().appendChild(el);
     }
+    /**
+     *
+     *
+     * @memberof Render
+     */
+
   }, {
     key: "trainingEnd",
     value: function trainingEnd() {
       this.queryParentBody().innerHTML = "\n            <tr><td colspan=\"2\"><h3>\u0422\u0440\u0435\u043D\u0438\u0440\u043E\u0432\u043A\u0430 \u043E\u043A\u043E\u043D\u0447\u0435\u043D\u0430</h3></td></tr>\n            <tr><td colspan=\"2\"><h5>\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445: ".concat(this.correct, "</h5></td></tr>\n            <tr><td colspan=\"2\"><h5>\u041D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445: ").concat(this.incorrect, "</h5></td></tr>\n            ");
     }
-  }, {
-    key: "greeting",
-    value: function greeting() {}
   }]);
 
   return Render;
@@ -3119,6 +3280,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render */ "./src/modules/render.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions */ "./src/modules/actions.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./src/modules/helpers.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3135,6 +3297,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var _default =
 /*#__PURE__*/
 function () {
@@ -3146,25 +3309,19 @@ function () {
   }
 
   _createClass(_default, [{
-    key: "bootDictionary",
-    value: function bootDictionary() {
+    key: "fetchDictionary",
+    value: function fetchDictionary() {
       return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(location.href + '/src/data/words.json');
     }
   }, {
     key: "run",
     value: function run() {
-      this.greeting();
+      this.chosenSurvey(); // this.init();
     }
   }, {
-    key: "greeting",
-    value: function greeting() {
-      this.render.greeting();
-      this.init();
-    }
-  }, {
-    key: "init",
+    key: "chosenSurvey",
     value: function () {
-      var _init = _asyncToGenerator(
+      var _chosenSurvey = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -3172,15 +3329,15 @@ function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.bootDictionary();
+                return this.fetchDictionary();
 
               case 2:
                 this.dictionary = _context.sent;
-                // render the HTML to render the html data i passed the data from file
-                this.render.imutate(this.dictionary.data);
-                this.actions.docking();
+                this.render.greeting(this.dictionary.data);
+                this.render.paginationRender();
+                this.actions.chosenEventListener();
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -3188,12 +3345,19 @@ function () {
         }, _callee, this);
       }));
 
-      function init() {
-        return _init.apply(this, arguments);
+      function chosenSurvey() {
+        return _chosenSurvey.apply(this, arguments);
       }
 
-      return init;
+      return chosenSurvey;
     }()
+  }, {
+    key: "init",
+    value: function init() {
+      // render the HTML to render the html data i passed the data from file
+      this.render.imutate();
+      this.actions.docking();
+    }
   }]);
 
   return _default;

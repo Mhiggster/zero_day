@@ -5,14 +5,36 @@ export default class {
         this.survayBody = this.renderInstance().queryParentBody();
     }
 
+    /**
+     *
+     *
+     * @returns
+     */
     renderInstance () {
         return new Render;
     }
 
+    chosenEventListener () {
+        document.querySelector('.pagination-list').addEventListener('click', (e) => {
+            let event = e || event, target = event.target;
+            if (target.tagName.toLowerCase() !== 'a') return
+
+        })
+    }
+
+    /**
+     *
+     *
+     */
     docking () {
         this.survayBody.addEventListener('click', this.selectEvent.bind(this))
     }
 
+    /**
+     *
+     *
+     * @param {*} e
+     */
     selectEvent (e) {
         let event = e || event, target = event.target;
         if (target.tagName.toLowerCase() !== 'td') return
@@ -22,12 +44,22 @@ export default class {
             : this.dangerTick(target);
     }
 
+    /**
+     *
+     *
+     * @param {*} target
+     * @returns
+     */
     selectCheck ( target ) {
         return JSON.parse(target.parentElement.getAttribute('correct'))
         target.parentElement.classList.add('has-background-success')
     }
 
-
+    /**
+     *
+     *
+     * @param {*} target
+     */
     dangerTick ( target ) {
         target.parentElement.classList.add('has-background-danger')
 
@@ -41,6 +73,11 @@ export default class {
         this.renderInstance().score();
     }
 
+    /**
+     *
+     *
+     * @param {*} target
+     */
     successTick ( target ) {
         target.parentElement.classList.add('has-background-success')
         this.tick()
@@ -48,10 +85,19 @@ export default class {
         this.renderInstance().score();
     }
 
+    /**
+     *
+     *
+     */
     tick () {
         setTimeout(this.tickRunner.bind(this), 1000);
     }
 
+    /**
+     *
+     *
+     * @returns
+     */
     tickRunner () {
         if (this.renderInstance().start === this.renderInstance().dictionary.length - 1) {
             return this.renderInstance().trainingEnd();

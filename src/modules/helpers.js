@@ -35,5 +35,12 @@ export default class {
         }
 
         action(el, index);
-    };
+    }
+
+    static chunk ( array, chunk ) {
+        var R = [];
+        for (var i = 0; i < array.length; i += chunk)
+            R.push(array.slice(i, i + chunk));
+        return R;
+    }
 }
