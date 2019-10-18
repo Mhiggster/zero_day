@@ -86,6 +86,11 @@ export default class Render {
             <tr><td colspan="2"><h5>Правильных: ${this.correct}</h5></td></tr>
             <tr><td colspan="2"><h5>Неправильных: ${this.incorrect}</h5></td></tr>
             `;
-1    }
+    }
+
+
+    greeting () {
+        
+    }
 
 }

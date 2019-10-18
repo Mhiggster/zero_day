@@ -11726,3 +11726,12 @@ label.panel-block:hover {
   cursor: pointer;
 }
 
+.showing {
+  display: block !important;
+}
+
+.greeting,
+.hidden {
+  display: none;
+}
+

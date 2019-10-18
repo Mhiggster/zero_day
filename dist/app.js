@@ -3090,8 +3090,10 @@ function () {
     key: "trainingEnd",
     value: function trainingEnd() {
       this.queryParentBody().innerHTML = "\n            <tr><td colspan=\"2\"><h3>\u0422\u0440\u0435\u043D\u0438\u0440\u043E\u0432\u043A\u0430 \u043E\u043A\u043E\u043D\u0447\u0435\u043D\u0430</h3></td></tr>\n            <tr><td colspan=\"2\"><h5>\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445: ".concat(this.correct, "</h5></td></tr>\n            <tr><td colspan=\"2\"><h5>\u041D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0445: ").concat(this.incorrect, "</h5></td></tr>\n            ");
-      1;
     }
+  }, {
+    key: "greeting",
+    value: function greeting() {}
   }]);
 
   return Render;
@@ -3156,6 +3158,7 @@ function () {
   }, {
     key: "greeting",
     value: function greeting() {
+      this.render.greeting();
       this.init();
     }
   }, {

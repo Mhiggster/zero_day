@@ -18,6 +18,9 @@ export default class {
     }
 
     greeting () {
+        this.render.greeting()
+
+
         this.init();
     }
 

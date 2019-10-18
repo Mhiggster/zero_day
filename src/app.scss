@@ -10,11 +10,10 @@
     cursor: pointer;
 }
 
-
-.error-select {
-
+.showing {
+    display: block !important;
 }
 
-.correct-select {
-    
+.greeting, .hidden {
+    display: none;
 }
