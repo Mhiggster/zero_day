@@ -3207,8 +3207,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.js */"./src/app.js");
-module.exports = __webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.scss */"./src/app.scss");
+__webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.scss */"./src/app.scss");
 
 
 /***/ })
