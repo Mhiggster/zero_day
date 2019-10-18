@@ -12,7 +12,7 @@
 
 Клонируем репозиторий
 
-    git clone https://github.com/Mhiggster/stackSlider.git app
+    git clone https://github.com/Mhiggster/VocabularyTrainer.git app
 
 Переходим в проект и устанавливаем
 
