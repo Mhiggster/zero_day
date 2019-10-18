@@ -1,0 +1,19 @@
+[
+    {
+        "word": "test",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Тест"
+            },
+            {
+                "correct": false,
+                "translation": "Тест2"
+            },
+            {
+                "correct": false,
+                "translation": "Тест3"
+            }
+        ]
+    }
+]

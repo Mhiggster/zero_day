@@ -474,5 +474,566 @@
                 "translation": "Зверь"
             }
         ]
+    },
+    {
+        "word": "sign, to sign",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Подпись, подписать"
+            },
+            {
+                "correct": false,
+                "translation": "Зашифровать"
+            },
+            {
+                "correct": false,
+                "translation": "Архивировать"
+            }
+        ]
+    },
+    {
+        "word": "argument",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Спор, Аргумент"
+            },
+            {
+                "correct": false,
+                "translation": "Хайп"
+            },
+            {
+                "correct": false,
+                "translation": "Шумиха"
+            }
+        ]
+    },
+    {
+        "word": "inquired",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Спросить как ASKED"
+            },
+            {
+                "correct": false,
+                "translation": "Убежать"
+            },
+            {
+                "correct": false,
+                "translation": "Обмануть"
+            }
+        ]
+    },
+    {
+        "word": "ahead",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Вперед как FORWARD"
+            },
+            {
+                "correct": false,
+                "translation": "Сздади"
+            },
+            {
+                "correct": false,
+                "translation": "Концентраиця"
+            }
+        ]
+    },
+    {
+        "word": "towards",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "В направлений"
+            },
+            {
+                "correct": false,
+                "translation": "Указать"
+            },
+            {
+                "correct": false,
+                "translation": "Место"
+            }
+        ]
+    },
+    {
+        "word": "interrupted",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Прерваный лайк BROKED"
+            },
+            {
+                "correct": false,
+                "translation": "Обручится"
+            },
+            {
+                "correct": false,
+                "translation": "Указать"
+            }
+        ]
+    },
+    {
+        "word": "nodded",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Кивнуть"
+            },
+            {
+                "correct": false,
+                "translation": "Словить"
+            },
+            {
+                "correct": false,
+                "translation": "Бросить"
+            }
+        ]
+    },
+    {
+        "word": "encouraging",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Обнадеживать"
+            },
+            {
+                "correct": false,
+                "translation": "Разрастаться"
+            },
+            {
+                "correct": false,
+                "translation": "Убежать"
+            }
+        ]
+    },
+    {
+        "word": "several",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "несколько как some"
+            },
+            {
+                "correct": false,
+                "translation": "Путать"
+            },
+            {
+                "correct": false,
+                "translation": "Стоит"
+            }
+        ]
+    },
+    {
+        "word": "certainly",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Конечно"
+            },
+            {
+                "correct": false,
+                "translation": "Простить"
+            },
+            {
+                "correct": false,
+                "translation": "Убегать"
+            }
+        ]
+    },
+    {
+        "word": "pavement, sidewalk, footpath",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Тратуар"
+            },
+            {
+                "correct": false,
+                "translation": "Дорого"
+            },
+            {
+                "correct": false,
+                "translation": "Улицы"
+            }
+        ]
+    },
+    {
+        "word": "along",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Вдоль"
+            },
+            {
+                "correct": false,
+                "translation": "Сзади"
+            },
+            {
+                "correct": false,
+                "translation": "Повсюду"
+            }
+        ]
+    },
+    {
+        "word": "pushed past, go past",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Мимо проходили, Идут мимо"
+            },
+            {
+                "correct": false,
+                "translation": "Убегали"
+            },
+            {
+                "correct": false,
+                "translation": "Толчок"
+            }
+        ]
+    },
+    {
+        "word": "after a while",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "спустя некоторое время"
+            },
+            {
+                "correct": false,
+                "translation": "Вчера"
+            },
+            {
+                "correct": false,
+                "translation": "Почнму так долго"
+            }
+        ]
+    },
+    {
+        "word": "kept, kept on, keep on",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Хранить, продолжать (continue)"
+            },
+            {
+                "correct": false,
+                "translation": "Ехать"
+            },
+            {
+                "correct": false,
+                "translation": "Жмотиться"
+            }
+        ]
+    },
+    {
+        "word": "brave",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Храбрый"
+            },
+            {
+                "correct": false,
+                "translation": "Трус"
+            },
+            {
+                "correct": false,
+                "translation": "Бегемот"
+            }
+        ]
+    },
+    {
+        "word": "lungs",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Легкие человека"
+            },
+            {
+                "correct": false,
+                "translation": "Просто"
+            },
+            {
+                "correct": false,
+                "translation": "Невозможно"
+            }
+        ]
+    },
+    {
+        "word": "boundary, border",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Граница"
+            },
+            {
+                "correct": false,
+                "translation": "Трус"
+            },
+            {
+                "correct": false,
+                "translation": "Бегемот"
+            }
+        ]
+    },
+    {
+        "word": "reliable",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Надежный"
+            },
+            {
+                "correct": false,
+                "translation": "Безмуный"
+            },
+            {
+                "correct": false,
+                "translation": "Скудный"
+            }
+        ]
+    },
+    {
+        "word": "shelter",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Укрытие, убежище итд"
+            },
+            {
+                "correct": false,
+                "translation": "Трус"
+            },
+            {
+                "correct": false,
+                "translation": "Бегемот"
+            }
+        ]
+    },
+    {
+        "word": "cope with",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Справляться"
+            },
+            {
+                "correct": false,
+                "translation": "Сдаться"
+            },
+            {
+                "correct": false,
+                "translation": "Скопировать"
+            }
+        ]
+    },
+    {
+        "word": "push yourself",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Заставить себя"
+            },
+            {
+                "correct": false,
+                "translation": "Убраться"
+            },
+            {
+                "correct": false,
+                "translation": "Принести"
+            }
+        ]
+    },
+    {
+        "word": "blankets",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Одеяло"
+            },
+            {
+                "correct": false,
+                "translation": "Шахта"
+            },
+            {
+                "correct": false,
+                "translation": "Пещера"
+            }
+        ]
+    },
+    {
+        "word": "candles",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Свечи"
+            },
+            {
+                "correct": false,
+                "translation": "Свет"
+            },
+            {
+                "correct": false,
+                "translation": "Фабрика"
+            }
+        ]
+    },
+    {
+        "word": "first aid kit",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Аптечка"
+            },
+            {
+                "correct": false,
+                "translation": "Фотопорат"
+            },
+            {
+                "correct": false,
+                "translation": "Кративный"
+            }
+        ]
+    },
+    {
+        "word": "penknife",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Коцелярсикй нож"
+            },
+            {
+                "correct": false,
+                "translation": "Брат"
+            },
+            {
+                "correct": false,
+                "translation": "Пила"
+            }
+        ]
+    },
+    {
+        "word": "bowl",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Чашка, Миска"
+            },
+            {
+                "correct": false,
+                "translation": "Коврик"
+            },
+            {
+                "correct": false,
+                "translation": "Мышь"
+            }
+        ]
+    },
+    {
+        "word": "rope",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Верека"
+            },
+            {
+                "correct": false,
+                "translation": "Шаблон"
+            },
+            {
+                "correct": false,
+                "translation": "Грубый"
+            }
+        ]
+    },
+    {
+        "word": "tent",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Палатка"
+            },
+            {
+                "correct": false,
+                "translation": "Машига"
+            },
+            {
+                "correct": false,
+                "translation": "Дом"
+            }
+        ]
+    },
+    {
+        "word": "torch",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Факел"
+            },
+            {
+                "correct": false,
+                "translation": "Подземелье"
+            },
+            {
+                "correct": false,
+                "translation": "Завтра"
+            }
+        ]
+    },
+    {
+        "word": "scissors",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Ножницы"
+            },
+            {
+                "correct": false,
+                "translation": "Джакетка"
+            },
+            {
+                "correct": false,
+                "translation": "Шрамы"
+            }
+        ]
+    },
+    {
+        "word": "retired",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Пенсия"
+            },
+            {
+                "correct": false,
+                "translation": "Молодой"
+            },
+            {
+                "correct": false,
+                "translation": "Скромный"
+            }
+        ]
+    },
+    {
+        "word": "toddler",
+        "translations": [
+            {
+                "correct": true,
+                "translation": "Ползунок, ребенок который еще ползает"
+            },
+            {
+                "correct": false,
+                "translation": "Высокий"
+            },
+            {
+                "correct": false,
+                "translation": "Враги"
+            }
+        ]
     }
 ]
