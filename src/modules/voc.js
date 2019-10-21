@@ -2,23 +2,40 @@ import axios from 'axios'
 import Render from './render'
 import Actions from './actions'
 import Helpers from './helpers'
-
+/**
+ * Appliction entry point
+ *
+ * @export
+ * @class Voc
+ */
 export default class Voc {
+
+    /**
+     * Creates an instance of Voc.
+     * 
+     * @memberof Voc
+     */
     constructor () {
         this.render = new Render
         this.actions = new Actions
     }
 
+    /**
+     * fetch several data from json files
+     *
+     * @returns
+     * @memberof Voc
+     */
     fetchDictionary () {
         return  axios.get(location.href + '/src/data/words.json');
     } 
 
-    run () {
-        this.chosenSurvey()
-        // this.init();
-    }
-
-    async chosenSurvey () {
+    /**
+     * Run the Application
+     *
+     * @memberof Voc
+     */
+    async run () {
         // boot a dictionary
         this.dictionary = await this.fetchDictionary();
 
@@ -26,14 +43,5 @@ export default class Voc {
         this.render.paginationRender();
 
         this.actions.chosenEventListener();
-    }
-
-
-    init () {
-        // render the HTML to render the html data i passed the data from file
-        // run from action
-
-        // run from action
-        // this.actions.docking()
     }
 }

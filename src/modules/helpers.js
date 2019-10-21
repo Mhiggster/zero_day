@@ -1,9 +1,32 @@
+/**
+ *
+ *
+ * @export
+ * @class Helpers
+ */
 export default class Helpers {
+
+    /**
+     *
+     *
+     * @static
+     * @param {*} obj
+     * @returns
+     * @memberof Helpers
+     */
     static randomProperty ( obj ) {
         var keys = Object.keys(obj)
         return obj[keys[keys.length * Math.random() << 0]];
     }
 
+    /**
+     *
+     *
+     * @static
+     * @param {*} words
+     * @returns
+     * @memberof Helpers
+     */
     static mixedOrder( words ) {
         var currentIndex = words.length, temporaryValue, randomIndex;
 
@@ -23,6 +46,17 @@ export default class Helpers {
         return words;
     }
 
+    /**
+     *
+     *
+     * @static
+     * @param {*} name
+     * @param {*} index
+     * @param {*} options
+     * @param {*} action
+     * @returns
+     * @memberof Helpers
+     */
     static createElement(name, index, options, action) {
         if (!(name || options)) return;
 
@@ -37,6 +71,15 @@ export default class Helpers {
         action(el, index);
     }
 
+    /**
+     *
+     *
+     * @static
+     * @param {*} array
+     * @param {*} chunk
+     * @returns
+     * @memberof Helpers
+     */
     static chunk ( array, chunk ) {
         var R = [];
         for (var i = 0; i < array.length; i += chunk)

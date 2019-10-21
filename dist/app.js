@@ -2839,20 +2839,31 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
+/**
+ * In this class we have to run only event action for our application
+ *
+ * @export
+ * @class Actions
+ */
 
 var Actions =
 /*#__PURE__*/
 function () {
+  /**
+   *Creates an instance of Actions.
+   * @memberof Actions
+   */
   function Actions() {
     _classCallCheck(this, Actions);
 
-    this.survayBody = this.renderInstance().queryParentBody();
+    this.surveyBody = this.renderInstance().queryParentBody();
     this.range = [];
   }
   /**
+   * Create Singleton Render Instance
    *
-   *
-   * @returns
+   * @returns Render
+   * @memberof Actions
    */
 
 
@@ -2861,39 +2872,53 @@ function () {
     value: function renderInstance() {
       return new _render__WEBPACK_IMPORTED_MODULE_0__["default"]();
     }
+    /**
+     * Bind events with pagination list
+     *
+     * @memberof Actions
+     */
+
   }, {
     key: "chosenEventListener",
     value: function chosenEventListener() {
-      var _this = this;
-
-      document.querySelector('.pagination-list').addEventListener('click', function (e) {
-        var event = e || event,
-            target = event.target;
-        if (target.tagName.toLowerCase() !== 'a') return; // remove from greeting and adding to trainer
-
-        document.querySelector('.greeting').classList.remove('showing');
-        document.querySelector('.trainer').classList.add('showing');
-        _this.range = target.innerHTML.split(' - ');
-
-        _this.renderInstance().imutate(parseInt(_this.range[0]) - 1, parseInt(_this.range[1]) - 1);
-
-        _this.docking();
-      });
+      document.querySelector('.pagination-list').addEventListener('click', this.activateSurvey.bind(this));
     }
     /**
+     * Activate Survey and display voc table
      *
+     * @param {*} e
+     * @memberof Actions
+     */
+
+  }, {
+    key: "activateSurvey",
+    value: function activateSurvey(e) {
+      var event = e || event,
+          target = event.target;
+      if (target.tagName.toLowerCase() !== 'a') return;
+      document.querySelector('.greeting').classList.remove('showing');
+      document.querySelector('.trainer').classList.add('showing');
+      this.range = target.innerHTML.split(' - ');
+      this.rangeCaching = parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1;
+      this.renderInstance().imutate(this.rangeCaching);
+      this.docking();
+    }
+    /**
+     * Docking with Survey Table
      *
+     * @memberof Actions
      */
 
   }, {
     key: "docking",
     value: function docking() {
-      this.survayBody.addEventListener('click', this.selectEvent.bind(this));
+      this.surveyBody.addEventListener('click', this.selectEvent.bind(this));
     }
     /**
-     *
+     * Chose the right or incorrect word
      *
      * @param {*} e
+     * @memberof Actions
      */
 
   }, {
@@ -2905,22 +2930,23 @@ function () {
       this.selectCheck(target) ? this.successTick(target) : this.dangerTick(target);
     }
     /**
-     *
+     * Check Words correct
      *
      * @param {*} target
      * @returns
+     * @memberof Actions
      */
 
   }, {
     key: "selectCheck",
     value: function selectCheck(target) {
       return JSON.parse(target.parentElement.getAttribute('correct'));
-      target.parentElement.classList.add('has-background-success');
     }
     /**
-     *
+     * Inccorect Counter
      *
      * @param {*} target
+     * @memberof Actions
      */
 
   }, {
@@ -2928,15 +2954,16 @@ function () {
     value: function dangerTick(target) {
       target.parentElement.classList.add('has-background-danger'); // if doesn't correct choise select the correct row line
 
-      this.survayBody.querySelector("[correct=\"true\"]").classList.add('has-background-success');
+      this.surveyBody.querySelector("[correct=\"true\"]").classList.add('has-background-success');
       this.tick();
       this.renderInstance().incorrect++;
       this.renderInstance().score();
     }
     /**
-     *
+     * Correct Counter
      *
      * @param {*} target
+     * @memberof Actions
      */
 
   }, {
@@ -2948,8 +2975,9 @@ function () {
       this.renderInstance().score();
     }
     /**
+     * Transition to the next scene
      *
-     *
+     * @memberof Actions
      */
 
   }, {
@@ -2958,21 +2986,22 @@ function () {
       setTimeout(this.tickRunner.bind(this), 1000);
     }
     /**
-     *
+     * Transition Runner
      *
      * @returns
+     * @memberof Actions
      */
 
   }, {
     key: "tickRunner",
     value: function tickRunner() {
-      if (this.renderInstance().start === this.renderInstance().dictionary.slice(parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1).length - 1) {
+      if (this.renderInstance().start === this.renderInstance().dictionary.slice(this.rangeCaching).length - 1) {
         return this.renderInstance().trainingEnd();
       }
 
       ++this.renderInstance().start; // i need the call imutate with new RANGE
 
-      this.renderInstance().imutate(parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1);
+      this.renderInstance().imutate(this.rangeCaching);
     }
   }]);
 
@@ -2999,6 +3028,12 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+/**
+ *
+ *
+ * @export
+ * @class Helpers
+ */
 var Helpers =
 /*#__PURE__*/
 function () {
@@ -3008,10 +3043,28 @@ function () {
 
   _createClass(Helpers, null, [{
     key: "randomProperty",
+
+    /**
+     *
+     *
+     * @static
+     * @param {*} obj
+     * @returns
+     * @memberof Helpers
+     */
     value: function randomProperty(obj) {
       var keys = Object.keys(obj);
       return obj[keys[keys.length * Math.random() << 0]];
     }
+    /**
+     *
+     *
+     * @static
+     * @param {*} words
+     * @returns
+     * @memberof Helpers
+     */
+
   }, {
     key: "mixedOrder",
     value: function mixedOrder(words) {
@@ -3031,6 +3084,18 @@ function () {
 
       return words;
     }
+    /**
+     *
+     *
+     * @static
+     * @param {*} name
+     * @param {*} index
+     * @param {*} options
+     * @param {*} action
+     * @returns
+     * @memberof Helpers
+     */
+
   }, {
     key: "createElement",
     value: function createElement(name, index, options, action) {
@@ -3045,6 +3110,16 @@ function () {
 
       action(el, index);
     }
+    /**
+     *
+     *
+     * @static
+     * @param {*} array
+     * @param {*} chunk
+     * @returns
+     * @memberof Helpers
+     */
+
   }, {
     key: "chunk",
     value: function chunk(array, _chunk) {
@@ -3083,6 +3158,12 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
+/**
+ * Render Our Application
+ *
+ * @export
+ * @class Render
+ */
 
 var Render =
 /*#__PURE__*/
@@ -3110,7 +3191,7 @@ function () {
     Render.instance = this;
   }
   /**
-   *
+   * QUERY TO TABLE
    *
    * @returns
    * @memberof Render
@@ -3123,7 +3204,7 @@ function () {
       return document.querySelector('.survay-table_body');
     }
     /**
-     * rendering the greeting section
+     * Rendering the greeting section
      *
      * @param {*} dictionary
      * @memberof Render
@@ -3146,6 +3227,12 @@ function () {
         _this.rangePagination.push(_this.rangeSplit);
       });
     }
+    /**
+     * Render pagination block
+     *
+     * @memberof Render
+     */
+
   }, {
     key: "paginationRender",
     value: function paginationRender() {
@@ -3158,7 +3245,7 @@ function () {
       });
     }
     /**
-     *
+     * Render general sections
      *
      * @memberof Render
      */
@@ -3167,13 +3254,12 @@ function () {
     key: "imutate",
     value: function imutate(from, to) {
       // scenes lenngth
-      this.scenes = this.dictionary.slice(from, to).length; // rendering
-
+      this.scenes = this.dictionary.slice(from, to).length;
       this.currentScene = this.dictionary.slice(from, to)[this.start];
       this.display();
     }
     /**
-     *
+     * Main render trigger
      *
      * @memberof Render
      */
@@ -3198,7 +3284,7 @@ function () {
       return this;
     }
     /**
-     *
+     * Render the score section
      *
      * @memberof Render
      */
@@ -3209,7 +3295,7 @@ function () {
       document.querySelector('.score').innerHTML = "<span class=\"has-text-success\">".concat(this.correct, "</span>/<span class=\"has-text-danger\">").concat(this.incorrect, "</span>");
     }
     /**
-     * get shaful words
+     * get shuffle words
      *
      * @param {*} translations
      * @returns
@@ -3243,7 +3329,7 @@ function () {
       });
     }
     /**
-     *
+     * Inject the translations words
      *
      * @param {*} el
      * @param {*} translation
@@ -3257,7 +3343,7 @@ function () {
       this.queryParentBody().appendChild(el);
     }
     /**
-     *
+     * Render Ending words
      *
      * @memberof Render
      */
@@ -3309,31 +3395,50 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+/**
+ * Appliction entry point
+ *
+ * @export
+ * @class Voc
+ */
 
 var Voc =
 /*#__PURE__*/
 function () {
+  /**
+   * Creates an instance of Voc.
+   * 
+   * @memberof Voc
+   */
   function Voc() {
     _classCallCheck(this, Voc);
 
     this.render = new _render__WEBPACK_IMPORTED_MODULE_2__["default"]();
     this.actions = new _actions__WEBPACK_IMPORTED_MODULE_3__["default"]();
   }
+  /**
+   * fetch several data from json files
+   *
+   * @returns
+   * @memberof Voc
+   */
+
 
   _createClass(Voc, [{
     key: "fetchDictionary",
     value: function fetchDictionary() {
       return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(location.href + '/src/data/words.json');
     }
+    /**
+     * Run the Application
+     *
+     * @memberof Voc
+     */
+
   }, {
     key: "run",
-    value: function run() {
-      this.chosenSurvey(); // this.init();
-    }
-  }, {
-    key: "chosenSurvey",
     value: function () {
-      var _chosenSurvey = _asyncToGenerator(
+      var _run = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -3357,19 +3462,12 @@ function () {
         }, _callee, this);
       }));
 
-      function chosenSurvey() {
-        return _chosenSurvey.apply(this, arguments);
+      function run() {
+        return _run.apply(this, arguments);
       }
 
-      return chosenSurvey;
+      return run;
     }()
-  }, {
-    key: "init",
-    value: function init() {// render the HTML to render the html data i passed the data from file
-      // run from action
-      // run from action
-      // this.actions.docking()
-    }
   }]);
 
   return Voc;
@@ -3386,13 +3484,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.js */"./src/app.js");
-module.exports = __webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.scss */"./src/app.scss");
-=======
-__webpack_require__(/*! C:\Users\ььььь\Desktop\VocabularyTrainer\src\app.js */"./src/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ььььь\Desktop\VocabularyTrainer\src\app.scss */"./src/app.scss");
->>>>>>> 47d229fbf816d11e4ff3a1232fb1504f3de3e92c
+__webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.scss */"./src/app.scss");
 
 
 /***/ })

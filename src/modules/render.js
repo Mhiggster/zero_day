@@ -1,7 +1,11 @@
 import Helpers from './helpers'
-
+/**
+ * Render Our Application
+ *
+ * @export
+ * @class Render
+ */
 export default class Render {
-
     /**
      * Creates an instance of Render.
      * @memberof Render
@@ -26,7 +30,7 @@ export default class Render {
     }
 
     /**
-     *
+     * QUERY TO TABLE
      *
      * @returns
      * @memberof Render
@@ -36,7 +40,7 @@ export default class Render {
     }
 
     /**
-     * rendering the greeting section
+     * Rendering the greeting section
      *
      * @param {*} dictionary
      * @memberof Render
@@ -54,6 +58,11 @@ export default class Render {
         })
     }
 
+    /**
+     * Render pagination block
+     *
+     * @memberof Render
+     */
     paginationRender () {
         document.querySelector('.pagination-list').innerHTML = '';
         this.rangePagination.forEach(item => {
@@ -66,22 +75,21 @@ export default class Render {
     }
 
     /**
-     *
+     * Render general sections
      *
      * @memberof Render
      */
     imutate (from, to) {
         // scenes lenngth
         this.scenes = this.dictionary.slice(from, to).length
-        // rendering
-        
+
         this.currentScene = this.dictionary.slice(from, to)[this.start]
 
         this.display();
     }
 
     /**
-     *
+     * Main render trigger
      *
      * @memberof Render
      */
@@ -106,7 +114,7 @@ export default class Render {
     }
 
     /**
-     *
+     * Render the score section
      *
      * @memberof Render
      */
@@ -115,7 +123,7 @@ export default class Render {
     }
 
     /**
-     * get shaful words
+     * get shuffle words
      *
      * @param {*} translations
      * @returns
@@ -145,7 +153,7 @@ export default class Render {
     }
 
     /**
-     *
+     * Inject the translations words
      *
      * @param {*} el
      * @param {*} translation
@@ -157,7 +165,7 @@ export default class Render {
     }
 
     /**
-     *
+     * Render Ending words
      *
      * @memberof Render
      */
