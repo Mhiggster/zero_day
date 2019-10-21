@@ -30,11 +30,10 @@ export default class Voc {
 
 
     init () {
-        
-        
         // render the HTML to render the html data i passed the data from file
-        this.render.imutate()
+        // run from action
 
-        this.actions.docking()
+        // run from action
+        // this.actions.docking()
     }
 }

@@ -2847,6 +2847,7 @@ function () {
     _classCallCheck(this, Actions);
 
     this.survayBody = this.renderInstance().queryParentBody();
+    this.range = [];
   }
   /**
    *
@@ -2863,10 +2864,20 @@ function () {
   }, {
     key: "chosenEventListener",
     value: function chosenEventListener() {
+      var _this = this;
+
       document.querySelector('.pagination-list').addEventListener('click', function (e) {
         var event = e || event,
             target = event.target;
-        if (target.tagName.toLowerCase() !== 'a') return;
+        if (target.tagName.toLowerCase() !== 'a') return; // remove from greeting and adding to trainer
+
+        document.querySelector('.greeting').classList.remove('showing');
+        document.querySelector('.trainer').classList.add('showing');
+        _this.range = target.innerHTML.split(' - ');
+
+        _this.renderInstance().imutate(parseInt(_this.range[0]) - 1, parseInt(_this.range[1]) - 1);
+
+        _this.docking();
       });
     }
     /**
@@ -2955,12 +2966,13 @@ function () {
   }, {
     key: "tickRunner",
     value: function tickRunner() {
-      if (this.renderInstance().start === this.renderInstance().dictionary.length - 1) {
+      if (this.renderInstance().start === this.renderInstance().dictionary.slice(parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1).length - 1) {
         return this.renderInstance().trainingEnd();
       }
 
-      ++this.renderInstance().start;
-      this.renderInstance().imutate(this.renderInstance().dictionary);
+      ++this.renderInstance().start; // i need the call imutate with new RANGE
+
+      this.renderInstance().imutate(parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1);
     }
   }]);
 
@@ -3153,11 +3165,11 @@ function () {
 
   }, {
     key: "imutate",
-    value: function imutate() {
+    value: function imutate(from, to) {
       // scenes lenngth
-      this.scenes = this.dictionary.length; // rendering
+      this.scenes = this.dictionary.slice(from, to).length; // rendering
 
-      this.currentScene = this.dictionary[this.start];
+      this.currentScene = this.dictionary.slice(from, to)[this.start];
       this.display();
     }
     /**
@@ -3353,10 +3365,10 @@ function () {
     }()
   }, {
     key: "init",
-    value: function init() {
-      // render the HTML to render the html data i passed the data from file
-      this.render.imutate();
-      this.actions.docking();
+    value: function init() {// render the HTML to render the html data i passed the data from file
+      // run from action
+      // run from action
+      // this.actions.docking()
     }
   }]);
 
@@ -3374,8 +3386,13 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.js */"./src/app.js");
-module.exports = __webpack_require__(/*! /home/mhiggster/project/VocabularyTrainer/src/app.scss */"./src/app.scss");
+<<<<<<< HEAD
+__webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! /home/mirazhhi/projects/VocabularyTrainer/src/app.scss */"./src/app.scss");
+=======
+__webpack_require__(/*! C:\Users\ььььь\Desktop\VocabularyTrainer\src\app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ььььь\Desktop\VocabularyTrainer\src\app.scss */"./src/app.scss");
+>>>>>>> 47d229fbf816d11e4ff3a1232fb1504f3de3e92c
 
 
 /***/ })

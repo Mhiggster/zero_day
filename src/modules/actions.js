@@ -3,6 +3,7 @@ import Render from './render'
 export default class Actions {
     constructor () {
         this.survayBody = this.renderInstance().queryParentBody();
+        this.range = [];
     }
 
     /**
@@ -18,7 +19,15 @@ export default class Actions {
         document.querySelector('.pagination-list').addEventListener('click', (e) => {
             let event = e || event, target = event.target;
             if (target.tagName.toLowerCase() !== 'a') return
+            // remove from greeting and adding to trainer
+            document.querySelector('.greeting').classList.remove('showing');
+            document.querySelector('.trainer').classList.add('showing');
+            
 
+            this.range = target.innerHTML.split(' - '); 
+            this.renderInstance().imutate(parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1);
+
+            this.docking()
         })
     }
 
@@ -99,10 +108,11 @@ export default class Actions {
      * @returns
      */
     tickRunner () {
-        if (this.renderInstance().start === this.renderInstance().dictionary.length - 1) {
+        if (this.renderInstance().start === this.renderInstance().dictionary.slice(parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1).length - 1) {
             return this.renderInstance().trainingEnd();
         }
         ++this.renderInstance().start;
-        this.renderInstance().imutate(this.renderInstance().dictionary)
+        // i need the call imutate with new RANGE
+        this.renderInstance().imutate(parseInt(this.range[0]) - 1, parseInt(this.range[1]) - 1)
     }
 }

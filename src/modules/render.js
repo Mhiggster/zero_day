@@ -70,11 +70,12 @@ export default class Render {
      *
      * @memberof Render
      */
-    imutate () {
+    imutate (from, to) {
         // scenes lenngth
-        this.scenes = this.dictionary.length
+        this.scenes = this.dictionary.slice(from, to).length
         // rendering
-        this.currentScene = this.dictionary[this.start]
+        
+        this.currentScene = this.dictionary.slice(from, to)[this.start]
 
         this.display();
     }
