@@ -3,8 +3,7 @@ import Render from './render'
 import Actions from './actions'
 import Helpers from './helpers'
 
-export default class {
-
+export default class Voc {
     constructor () {
         this.render = new Render
         this.actions = new Actions

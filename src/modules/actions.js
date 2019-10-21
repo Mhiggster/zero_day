@@ -1,6 +1,6 @@
 import Render from './render'
 
-export default class {
+export default class Actions {
     constructor () {
         this.survayBody = this.renderInstance().queryParentBody();
     }

@@ -2830,7 +2830,7 @@ new _modules_voc__WEBPACK_IMPORTED_MODULE_0__["default"]().run();
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Actions; });
 /* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render */ "./src/modules/render.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2840,11 +2840,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var _default =
+var Actions =
 /*#__PURE__*/
 function () {
-  function _default() {
-    _classCallCheck(this, _default);
+  function Actions() {
+    _classCallCheck(this, Actions);
 
     this.survayBody = this.renderInstance().queryParentBody();
   }
@@ -2855,7 +2855,7 @@ function () {
    */
 
 
-  _createClass(_default, [{
+  _createClass(Actions, [{
     key: "renderInstance",
     value: function renderInstance() {
       return new _render__WEBPACK_IMPORTED_MODULE_0__["default"]();
@@ -2964,7 +2964,7 @@ function () {
     }
   }]);
 
-  return _default;
+  return Actions;
 }();
 
 
@@ -2980,21 +2980,21 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Helpers; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var _default =
+var Helpers =
 /*#__PURE__*/
 function () {
-  function _default() {
-    _classCallCheck(this, _default);
+  function Helpers() {
+    _classCallCheck(this, Helpers);
   }
 
-  _createClass(_default, null, [{
+  _createClass(Helpers, null, [{
     key: "randomProperty",
     value: function randomProperty(obj) {
       var keys = Object.keys(obj);
@@ -3046,7 +3046,7 @@ function () {
     }
   }]);
 
-  return _default;
+  return Helpers;
 }();
 
 
@@ -3273,7 +3273,7 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Voc; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -3298,17 +3298,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var _default =
+var Voc =
 /*#__PURE__*/
 function () {
-  function _default() {
-    _classCallCheck(this, _default);
+  function Voc() {
+    _classCallCheck(this, Voc);
 
     this.render = new _render__WEBPACK_IMPORTED_MODULE_2__["default"]();
     this.actions = new _actions__WEBPACK_IMPORTED_MODULE_3__["default"]();
   }
 
-  _createClass(_default, [{
+  _createClass(Voc, [{
     key: "fetchDictionary",
     value: function fetchDictionary() {
       return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(location.href + '/src/data/words.json');
@@ -3360,7 +3360,7 @@ function () {
     }
   }]);
 
-  return _default;
+  return Voc;
 }();
 
 

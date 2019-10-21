@@ -1,4 +1,4 @@
-export default class {
+export default class Helpers {
     static randomProperty ( obj ) {
         var keys = Object.keys(obj)
         return obj[keys[keys.length * Math.random() << 0]];
