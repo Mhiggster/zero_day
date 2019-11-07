@@ -2,7 +2,7 @@
 
 Простой тренажер слов на чисто javascript + bulma
 
-![voc gif](dist/voc.gif)
+![voc gif](dist/face-voc.gif)
 
 Сборка проекта происходит с использованием [laravel-mix](https://laravel-mix.com/)
 
