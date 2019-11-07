@@ -11717,6 +11717,12 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+
 .word {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -11733,5 +11739,11 @@ label.panel-block:hover {
 .greeting,
 .trainer {
   display: none;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
