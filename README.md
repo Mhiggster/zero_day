@@ -1,6 +1,6 @@
 ## Vocabulary Trainer
 
-Простой тренажер слов на чисто javascript + bulma
+Простой тренажер слов на чистом JavaScript + Bulma
 
 ![voc gif](dist/face-voc.gif)
 
